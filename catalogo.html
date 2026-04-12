@@ -90,8 +90,8 @@
     }
 
     .logo-box{
-      width:95px;
-      height:95px;
+      width:92px;
+      height:92px;
       border:none;
       border-radius:20px;
       background:transparent;
@@ -192,6 +192,10 @@
     .toolbar select:focus{
       border-color:rgba(47,120,189,.45);
       box-shadow:0 0 0 4px rgba(47,120,189,.08);
+    }
+
+    .mobile-toolbar-wrap{
+      display:none;
     }
 
     .banner{
@@ -588,127 +592,135 @@
     }
 
     @media (max-width: 640px){
-  .top-strip{
-    font-size:11px;
-    line-height:1.35;
-    padding:10px 12px;
-  }
+      .top-strip{
+        font-size:11px;
+        line-height:1.35;
+        padding:10px 12px;
+      }
 
-  .navbar{
-    gap:8px;
-    padding:10px 14px 12px;
-  }
+      .navbar{
+        gap:8px;
+        padding:10px 14px 12px;
+      }
 
-  .nav-top{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:120px;
-    padding:2px 0 0;
-  }
+      .nav-top{
+        position:relative;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:132px;
+        padding:4px 0;
+      }
 
-  .nav-left{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-  }
+      .nav-left{
+        width:100%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+      }
 
-  .brand{
-    display:none;
-  }
+      .brand{
+        display:none;
+      }
 
-  .logo-box{
-    width:150px;
-    height:150px;
-    margin:0 auto;
-  }
+      .logo-box{
+        width:170px;
+        height:170px;
+        margin:0 auto;
+      }
 
-  .logo-box img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-  }
+      .logo-box img{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+      }
 
-  .menu-btn{
-    display:flex;
-    position:absolute;
-    left:0;
-    top:50%;
-    transform:translateY(-50%);
-    width:52px;
-    height:52px;
-    border:none;
-    border-radius:14px;
-    background:transparent;
-    font-size:40px;
-    cursor:pointer;
-    align-items:center;
-    justify-content:center;
-    z-index:3;
-    color:#222;
-    padding:0;
-  }
+      .menu-btn{
+        display:flex;
+        position:absolute;
+        left:0;
+        top:50%;
+        transform:translateY(-50%);
+        width:52px;
+        height:52px;
+        border:none;
+        border-radius:14px;
+        background:transparent;
+        font-size:42px;
+        cursor:pointer;
+        align-items:center;
+        justify-content:center;
+        z-index:3;
+        color:#222;
+        padding:0;
+      }
 
-  .nav-bottom{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-top:-2px;
-  }
+      .nav-bottom{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+      }
 
-  .main-nav{
-    display:none;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:6px;
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:12px 14px;
-    box-shadow:var(--shadow-soft);
-  }
+      .main-nav{
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:16px;
+        padding:12px 14px;
+        box-shadow:var(--shadow-soft);
+      }
 
-  .main-nav a{
-    width:100%;
-    font-size:14px;
-    padding:8px 0;
-  }
+      .main-nav a{
+        width:100%;
+        font-size:14px;
+        padding:8px 0;
+      }
 
-  .menu-toggle:checked ~ .nav-bottom .main-nav{
-    display:flex;
-  }
+      .menu-toggle:checked ~ .nav-bottom .main-nav{
+        display:flex;
+      }
 
-  .toolbar{
-    grid-template-columns:1fr;
-    gap:10px;
-    margin-top:0;
-  }
+      .nav-bottom .toolbar{
+        display:none;
+      }
 
-  .toolbar input,
-  .toolbar select{
-    padding:14px 16px;
-    font-size:14px;
-    border-radius:16px;
-  }
+      .mobile-toolbar-wrap{
+        display:block;
+        margin-top:14px;
+        margin-bottom:8px;
+      }
 
-  .banner{
-    display:none;
-  }
+      .mobile-toolbar-wrap .toolbar{
+        grid-template-columns:1fr;
+        gap:10px;
+      }
 
-  .section-head{
-    margin:16px 0 12px;
-  }
+      .mobile-toolbar-wrap .toolbar input,
+      .mobile-toolbar-wrap .toolbar select{
+        padding:14px 16px;
+        font-size:14px;
+        border-radius:16px;
+      }
 
-  .section-head h3{
-    font-size:23px;
-  }
+      .banner{
+        display:none;
+      }
 
-  .section-head p{
-    font-size:13px;
-  }
-}
+      .section-head{
+        margin:14px 0 12px;
+      }
+
+      .section-head h3{
+        font-size:23px;
+      }
+
+      .section-head p{
+        font-size:13px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -739,8 +751,8 @@
         </nav>
 
         <div class="toolbar">
-          <input type="text" id="searchInput" placeholder="Buscar pin..." />
-          <select id="sortSelect">
+          <input type="text" id="searchInputDesktop" placeholder="Buscar pin..." />
+          <select id="sortSelectDesktop">
             <option value="default">Ordenar por</option>
             <option value="name">Nombre A-Z</option>
             <option value="low">Precio menor a mayor</option>
@@ -752,6 +764,18 @@
   </header>
 
   <div class="container">
+    <div class="mobile-toolbar-wrap">
+      <div class="toolbar">
+        <input type="text" id="searchInputMobile" placeholder="Buscar pin..." />
+        <select id="sortSelectMobile">
+          <option value="default">Ordenar por</option>
+          <option value="name">Nombre A-Z</option>
+          <option value="low">Precio menor a mayor</option>
+          <option value="high">Precio mayor a menor</option>
+        </select>
+      </div>
+    </div>
+
     <section class="banner">
       <h2>Catálogo de pines</h2>
       <p>Explora nuestras referencias y haz tu pedido directo por WhatsApp de forma rápida y fácil.</p>
@@ -774,8 +798,10 @@
   </div>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
-    const sortSelect = document.getElementById('sortSelect');
+    const searchInputDesktop = document.getElementById('searchInputDesktop');
+    const sortSelectDesktop = document.getElementById('sortSelectDesktop');
+    const searchInputMobile = document.getElementById('searchInputMobile');
+    const sortSelectMobile = document.getElementById('sortSelectMobile');
     const productGrid = document.getElementById('productGrid');
     const productCount = document.getElementById('productCount');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -876,6 +902,28 @@
     let visibleCount = INITIAL_VISIBLE;
     let filteredProducts = [...productos];
 
+    function isMobileView() {
+      return window.innerWidth <= 640;
+    }
+
+    function getActiveSearchInput() {
+      return isMobileView() ? searchInputMobile : searchInputDesktop;
+    }
+
+    function getActiveSortSelect() {
+      return isMobileView() ? sortSelectMobile : sortSelectDesktop;
+    }
+
+    function syncControls(source) {
+      if (source === 'desktop') {
+        searchInputMobile.value = searchInputDesktop.value;
+        sortSelectMobile.value = sortSelectDesktop.value;
+      } else {
+        searchInputDesktop.value = searchInputMobile.value;
+        sortSelectDesktop.value = sortSelectMobile.value;
+      }
+    }
+
     function formatoCOP(valor) {
       return '$' + valor.toLocaleString('es-CO') + ' COP';
     }
@@ -951,8 +999,8 @@
     }
 
     function aplicarFiltros(resetVisible = true) {
-      const termino = searchInput.value.toLowerCase().trim();
-      const orden = sortSelect.value;
+      const termino = getActiveSearchInput().value.toLowerCase().trim();
+      const orden = getActiveSortSelect().value;
 
       let filtrados = productos.filter(p =>
         `${p.nombre} ${p.referencia}`.toLowerCase().includes(termino)
@@ -978,8 +1026,29 @@
       renderProductos(filteredProducts);
     });
 
-    searchInput.addEventListener('input', () => aplicarFiltros(true));
-    sortSelect.addEventListener('change', () => aplicarFiltros(true));
+    searchInputDesktop.addEventListener('input', () => {
+      syncControls('desktop');
+      aplicarFiltros(true);
+    });
+
+    sortSelectDesktop.addEventListener('change', () => {
+      syncControls('desktop');
+      aplicarFiltros(true);
+    });
+
+    searchInputMobile.addEventListener('input', () => {
+      syncControls('mobile');
+      aplicarFiltros(true);
+    });
+
+    sortSelectMobile.addEventListener('change', () => {
+      syncControls('mobile');
+      aplicarFiltros(true);
+    });
+
+    window.addEventListener('resize', () => {
+      aplicarFiltros(false);
+    });
 
     aplicarFiltros(true);
   </script>
