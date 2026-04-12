@@ -12,7 +12,7 @@
       --texto:#1f1f1f;
       --muted:#6d6d6d;
       --bg:#f6f3ee;
-      --card:#ffffff;
+      --card:rgba(255,255,255,.97);
       --line:#e8e8e8;
       --shadow:0 12px 30px rgba(0,0,0,.08);
       --shadow-soft:0 8px 18px rgba(0,0,0,.05);
@@ -25,7 +25,7 @@
       box-sizing:border-box;
       margin:0;
       padding:0;
-      font-family:"Segoe UI",Arial,sans-serif
+      font-family:"Segoe UI", Arial, sans-serif;
     }
 
     html{
@@ -40,53 +40,56 @@
     }
 
     .container{
-      max-width:1450px;
+      width:min(100%, 1400px);
       margin:0 auto;
-      padding:0 18px 24px;
+      padding:0 14px 28px;
     }
 
     .top-strip{
       background:linear-gradient(135deg, var(--azul), var(--azul-oscuro));
       color:#fff;
       text-align:center;
-      font-weight:800;
-      font-size:15px;
-      padding:14px 18px;
-      letter-spacing:.2px;
+      font-weight:700;
+      font-size:13px;
       line-height:1.4;
+      padding:12px 14px;
+      letter-spacing:.2px;
     }
 
     header{
       background:rgba(255,255,255,.96);
       backdrop-filter: blur(6px);
       box-shadow:var(--shadow-soft);
-      position:sticky;
-      top:0;
-      z-index:50;
       border-bottom:1px solid rgba(0,0,0,.03);
     }
 
     .navbar{
-      max-width:1450px;
+      width:min(100%, 1400px);
       margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      padding:14px;
+    }
+
+    .nav-top{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:20px;
-      padding:18px 18px;
-      flex-wrap:wrap;
+      gap:12px;
     }
 
     .nav-left{
       display:flex;
       align-items:center;
-      gap:16px;
-      min-width:220px;
+      gap:14px;
+      min-width:0;
+      flex:1;
     }
 
     .logo-box{
-      width:82px;
-      height:82px;
+      width:92px;
+      height:92px;
       border:none;
       border-radius:20px;
       background:transparent;
@@ -104,32 +107,60 @@
       display:block;
     }
 
+    .brand{
+      min-width:0;
+    }
+
     .brand h1{
-      font-size:28px;
-      line-height:1;
-      margin-bottom:6px;
+      font-size:18px;
+      line-height:1.1;
+      margin-bottom:3px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .brand p{
       color:var(--muted);
-      font-size:15px;
+      font-size:13px;
+    }
+
+    .menu-toggle{
+      display:none;
+    }
+
+    .menu-btn{
+      display:none;
+      width:46px;
+      height:46px;
+      border:none;
+      border-radius:14px;
+      background:#f2f2f2;
+      font-size:24px;
+      cursor:pointer;
+      flex-shrink:0;
+      align-items:center;
+      justify-content:center;
+      user-select:none;
     }
 
     .main-nav{
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:28px;
+      gap:18px;
       flex-wrap:wrap;
-      flex:1;
     }
 
     .main-nav a{
       text-decoration:none;
       color:#24303f;
-      font-size:14px;
+      font-size:13px;
       font-weight:800;
+      letter-spacing:.3px;
+      padding:8px 0;
       transition:.2s ease;
+      position:relative;
     }
 
     .main-nav a:hover{
@@ -137,13 +168,13 @@
     }
 
     .hero{
-      margin-top:22px;
+      margin-top:18px;
       border-radius:28px;
       overflow:hidden;
-      min-height:460px;
+      min-height:440px;
       box-shadow:var(--shadow);
       background:
-        linear-gradient(180deg, rgba(18,28,42,.12) 0%, rgba(18,28,42,.38) 70%, rgba(18,28,42,.55) 100%),
+        linear-gradient(180deg, rgba(18,28,42,.10) 0%, rgba(18,28,42,.34) 70%, rgba(18,28,42,.52) 100%),
         url("imagenes/banner-principal.jpg") center/cover no-repeat;
       display:flex;
       align-items:flex-end;
@@ -151,7 +182,7 @@
 
     .hero-content{
       color:#fff;
-      padding:38px;
+      padding:34px;
       width:100%;
     }
 
@@ -219,17 +250,17 @@
     }
 
     .section{
-      margin-top:28px;
+      margin-top:24px;
       background:rgba(255,255,255,.92);
       border-radius:24px;
-      padding:28px;
+      padding:26px;
       box-shadow:var(--shadow-soft);
       border:1px solid rgba(0,0,0,.03);
     }
 
     .section-head{
       display:flex;
-      align-items:center;
+      align-items:flex-end;
       justify-content:space-between;
       gap:14px;
       flex-wrap:wrap;
@@ -238,15 +269,17 @@
 
     .section-head h3{
       font-size:32px;
+      line-height:1.05;
     }
 
     .section-head p{
       color:var(--muted);
+      font-size:14px;
     }
 
     .categories{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
       gap:18px;
     }
 
@@ -256,7 +289,7 @@
       background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(245,240,235,.95));
       border:1px solid #eee;
       border-radius:22px;
-      padding:24px;
+      padding:22px;
       min-height:150px;
       display:flex;
       flex-direction:column;
@@ -289,6 +322,8 @@
       color:var(--muted);
       box-shadow:var(--shadow-soft);
       border:1px solid rgba(0,0,0,.03);
+      font-size:13px;
+      line-height:1.5;
     }
 
     @media (max-width:900px){
@@ -297,19 +332,18 @@
       }
     }
 
-    @media (max-width:640px){
-      .top-strip{
-        font-size:14px;
-        padding:12px 14px;
+    @media (min-width: 641px){
+      .container{
+        padding:0 18px 30px;
       }
 
       .navbar{
-        padding:14px;
+        padding:16px 18px;
       }
 
       .logo-box{
-        width:72px;
-        height:72px;
+        width:88px;
+        height:88px;
       }
 
       .brand h1{
@@ -320,16 +354,232 @@
         font-size:14px;
       }
 
+      .hero{
+        min-height:460px;
+      }
+
       .hero-content{
-        padding:24px;
+        padding:36px;
+      }
+
+      .hero h2{
+        font-size:50px;
+      }
+
+      .section{
+        padding:28px;
+      }
+    }
+
+    @media (min-width: 992px){
+      .navbar{
+        display:flex;
+        flex-direction:column;
+        gap:16px;
+        padding:18px;
+      }
+
+      .nav-top{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:20px;
+      }
+
+      .main-nav{
+        justify-content:center;
+        gap:28px;
+      }
+
+      .main-nav a{
+        font-size:14px;
+      }
+
+      .hero{
+        min-height:500px;
+      }
+
+      .hero h2{
+        font-size:56px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .top-strip{
+        font-size:11px;
+        line-height:1.35;
+        padding:10px 12px;
+      }
+
+      .navbar{
+        gap:8px;
+        padding:10px 14px 12px;
+      }
+
+      .nav-top{
+        position:relative;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:90px;
+        padding:0;
+      }
+
+      .nav-left{
+        width:100%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+      }
+
+      .brand{
+        display:none;
+      }
+
+      .logo-box{
+        width:120px;
+        height:120px;
+        margin:0 auto;
+      }
+
+      .logo-box img{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+      }
+
+      .menu-btn{
+        display:flex;
+        position:absolute;
+        left:0;
+        top:50%;
+        transform:translateY(-50%);
+        width:42px;
+        height:42px;
+        border:none;
+        border-radius:14px;
+        background:transparent;
+        font-size:34px;
+        cursor:pointer;
+        align-items:center;
+        justify-content:center;
+        z-index:3;
+        color:#222;
+        padding:0;
+      }
+
+      .nav-bottom{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+      }
+
+      .main-nav{
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:16px;
+        padding:12px 14px;
+        box-shadow:var(--shadow-soft);
+      }
+
+      .main-nav a{
+        width:100%;
+        font-size:14px;
+        padding:8px 0;
+      }
+
+      .menu-toggle:checked ~ .nav-bottom .main-nav{
+        display:flex;
+      }
+
+      .hero{
+        margin-top:14px;
+        min-height:360px;
+        border-radius:24px;
+        background-position:center;
+      }
+
+      .hero-content{
+        padding:22px;
+      }
+
+      .pill{
+        font-size:11px;
+        padding:7px 12px;
+        margin-bottom:14px;
       }
 
       .hero h2{
         font-size:30px;
+        line-height:1.05;
+        letter-spacing:-0.5px;
+        margin-bottom:10px;
+      }
+
+      .hero p{
+        font-size:14px;
+        line-height:1.55;
+        margin-bottom:18px;
+      }
+
+      .hero-actions{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+
+      .btn{
+        width:100%;
+        padding:13px 16px;
+        font-size:14px;
+        border-radius:14px;
       }
 
       .section{
+        margin-top:18px;
         padding:20px;
+        border-radius:22px;
+      }
+
+      .section-head{
+        margin-bottom:18px;
+      }
+
+      .section-head h3{
+        font-size:28px;
+      }
+
+      .section-head p{
+        font-size:13px;
+      }
+
+      .categories{
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+      }
+
+      .cat-card{
+        min-height:120px;
+        padding:16px;
+        border-radius:18px;
+      }
+
+      .cat-card strong{
+        font-size:18px;
+      }
+
+      .cat-card span{
+        font-size:13px;
+      }
+
+      footer{
+        padding:18px;
+        border-radius:18px;
+        font-size:12px;
       }
     }
   </style>
@@ -341,22 +591,26 @@
 
   <header>
     <div class="navbar">
-      <div class="nav-left">
-        <div class="logo-box">
-          <img src="imagenes/logo.png" alt="Logo Pin Lab Co." onerror="this.style.display='none'; this.parentElement.innerHTML='Logo';">
-        </div>
-        <div class="brand">
-          <h1>Pin Lab Co.</h1>
-          <p>Pines metálicos coleccionables</p>
+      <div class="nav-top">
+        <label for="menu-toggle" class="menu-btn">☰</label>
+
+        <div class="nav-left">
+          <div class="logo-box">
+            <img src="imagenes/logo.png" alt="Logo Pin Lab Co." onerror="this.style.display='none'; this.parentElement.innerHTML='Logo';">
+          </div>
         </div>
       </div>
 
-      <nav class="main-nav">
-        <a href="index.html">INICIO</a>
-        <a href="catalogo.html">CATÁLOGO</a>
-        <a href="preguntas.html">PREGUNTAS FRECUENTES</a>
-        <a href="contacto.html">CONTACTO</a>
-      </nav>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+      <div class="nav-bottom">
+        <nav class="main-nav">
+          <a href="index.html">INICIO</a>
+          <a href="catalogo.html">CATÁLOGO</a>
+          <a href="preguntas.html">PREGUNTAS FRECUENTES</a>
+          <a href="contacto.html">CONTACTO</a>
+        </nav>
+      </div>
     </div>
   </header>
 
