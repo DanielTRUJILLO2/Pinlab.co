@@ -24,6 +24,8 @@
       --shadow-card:0 16px 30px rgba(24,39,75,.08);
       --verde:#1f7a5a;
       --verde-oscuro:#166247;
+      --negro-suave:#24272c;
+      --gris-oscuro:#343942;
       --radius:24px;
     }
 
@@ -54,50 +56,8 @@
       padding:0 18px 36px;
     }
 
-    .top-strip{
-      background:linear-gradient(135deg, var(--azul), var(--azul-oscuro));
-      color:#fff;
-      position:relative;
-      overflow:hidden;
-      min-height:46px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:0 14px;
-      box-shadow:0 6px 18px rgba(36,79,130,.12);
-    }
-
-    .top-strip-slider{
-      position:relative;
-      width:100%;
-      max-width:1200px;
-      height:46px;
-    }
-
-    .top-strip-message{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      font-weight:800;
-      font-size:14px;
-      line-height:1.4;
-      letter-spacing:.4px;
-      opacity:0;
-      transform:translateX(30px);
-      transition:opacity .45s ease, transform .45s ease;
-      padding:0 10px;
-    }
-
-    .top-strip-message.active{
-      opacity:1;
-      transform:translateX(0);
-    }
-
     header{
-      background:rgba(255,255,255,.88);
+      background:rgba(255,255,255,.90);
       backdrop-filter: blur(12px);
       box-shadow:0 10px 24px rgba(20,35,60,.06);
       border-bottom:1px solid rgba(36,79,130,.08);
@@ -219,7 +179,7 @@
     .hero{
       margin-top:24px;
       overflow:hidden;
-      min-height:540px;
+      min-height:560px;
       box-shadow:var(--shadow);
       background:
         linear-gradient(90deg, rgba(13,20,33,.68) 0%, rgba(13,20,33,.42) 38%, rgba(13,20,33,.20) 68%, rgba(13,20,33,.12) 100%),
@@ -230,8 +190,9 @@
       position:relative;
       isolation:isolate;
       border-radius:0;
-      margin-left:-18px;
-      margin-right:-18px;
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
     }
 
     .hero::before{
@@ -246,9 +207,9 @@
 
     .hero-content{
       color:#fff;
-      padding:44px;
+      padding:48px;
       width:100%;
-      max-width:760px;
+      max-width:790px;
       position:relative;
       z-index:1;
     }
@@ -267,20 +228,20 @@
     }
 
     .hero h1{
-      font-size:66px;
-      line-height:.96;
-      max-width:740px;
+      font-size:68px;
+      line-height:.95;
+      max-width:760px;
       margin-bottom:14px;
-      letter-spacing:-1.6px;
+      letter-spacing:-1.8px;
       text-shadow:0 10px 22px rgba(0,0,0,.18);
     }
 
     .hero p{
       font-size:18px;
-      max-width:600px;
-      line-height:1.68;
+      max-width:620px;
+      line-height:1.7;
       margin-bottom:24px;
-      color:rgba(255,255,255,.94);
+      color:rgba(255,255,255,.95);
       text-shadow:0 4px 12px rgba(0,0,0,.14);
     }
 
@@ -326,18 +287,66 @@
       transform:translateY(-2px);
     }
 
+    .promo-strip{
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      background:linear-gradient(135deg, var(--negro-suave), var(--gris-oscuro));
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+      min-height:54px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 10px 24px rgba(20,24,34,.14);
+      border-top:1px solid rgba(255,255,255,.04);
+      border-bottom:1px solid rgba(255,255,255,.04);
+    }
+
+    .promo-slider{
+      position:relative;
+      width:100%;
+      max-width:1200px;
+      height:54px;
+    }
+
+    .promo-message{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-weight:800;
+      font-size:14px;
+      line-height:1.4;
+      letter-spacing:.35px;
+      color:#fff;
+      opacity:0;
+      transform:translateX(26px);
+      transition:opacity .45s ease, transform .45s ease;
+      padding:0 18px;
+    }
+
+    .promo-message.active{
+      opacity:1;
+      transform:translateX(0);
+    }
+
     .section{
-      margin-top:26px;
-      background:rgba(255,255,255,.82);
+      margin-top:28px;
+      background:rgba(255,255,255,.84);
       box-shadow:var(--shadow-soft);
       border:1px solid rgba(36,79,130,.08);
       backdrop-filter: blur(8px);
       position:relative;
       overflow:hidden;
       border-radius:0;
-      margin-left:-18px;
-      margin-right:-18px;
-      padding:34px 36px;
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      padding:36px 42px;
     }
 
     .section::before{
@@ -358,15 +367,15 @@
       justify-content:space-between;
       gap:14px;
       flex-wrap:wrap;
-      margin-bottom:22px;
+      margin-bottom:24px;
       position:relative;
       z-index:1;
     }
 
     .section-head h2{
-      font-size:38px;
+      font-size:40px;
       line-height:1.02;
-      letter-spacing:-.9px;
+      letter-spacing:-1px;
       color:#1d2d40;
     }
 
@@ -408,7 +417,7 @@
       min-width:280px;
       max-width:280px;
       width:280px;
-      background:rgba(255,255,255,.96);
+      background:rgba(255,255,255,.97);
       border:1px solid rgba(36,79,130,.08);
       border-radius:24px;
       overflow:hidden;
@@ -521,20 +530,20 @@
     }
 
     .category-card{
-  text-decoration:none;
-  color:inherit;
-  min-height:220px;
-  border-radius:24px;
-  overflow:hidden;
-  position:relative;
-  display:flex;
-  align-items:flex-end;
-  box-shadow:var(--shadow-card);
-  transition:.25s ease;
-  border:1px solid rgba(36,79,130,.10);
-  background:#dfe7ef;
-  isolation:isolate;
-}
+      text-decoration:none;
+      color:inherit;
+      min-height:220px;
+      border-radius:24px;
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      box-shadow:var(--shadow-card);
+      transition:.25s ease;
+      border:1px solid rgba(36,79,130,.10);
+      background:#dfe7ef;
+      isolation:isolate;
+    }
 
     .category-card:hover{
       transform:translateY(-5px);
@@ -543,33 +552,32 @@
 
     .category-bg{
       position:absolute;
-      inset:-12px;
+      inset:-18px;
       background-size:cover;
       background-position:center;
-      filter:blur(1.5px);
-      transform:scale(1.08);
-}
+      filter:blur(7px);
+      transform:scale(1.12);
+    }
 
-.category-bg::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(180deg, rgba(17,26,39,.22) 0%, rgba(17,26,39,.34) 45%, rgba(17,26,39,.62) 100%);
-}
+    .category-bg::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(17,26,39,.22) 0%, rgba(17,26,39,.34) 45%, rgba(17,26,39,.62) 100%);
+    }
 
     .category-card:hover .category-bg{
-      transform:scale(1.06);
+      transform:scale(1.15);
     }
 
     .category-content{
-  position:relative;
-  z-index:1;
-  width:100%;
-  padding:18px;
-  color:#fff;
-}
-
+      position:relative;
+      z-index:1;
+      width:100%;
+      padding:18px;
+      color:#fff;
+    }
 
     .category-chip{
       display:inline-flex;
@@ -594,7 +602,7 @@
     .category-card p{
       font-size:13px;
       line-height:1.5;
-      color:rgba(255,255,255,.90);
+      color:rgba(255,255,255,.92);
       max-width:95%;
     }
 
@@ -610,7 +618,7 @@
     .faq-layout{
       display:grid;
       grid-template-columns:.82fr 1.18fr;
-      gap:28px;
+      gap:30px;
       align-items:start;
       position:relative;
       z-index:1;
@@ -678,7 +686,7 @@
     }
 
     .faq-item{
-      background:rgba(255,255,255,.96);
+      background:rgba(255,255,255,.97);
       border:1px solid rgba(36,79,130,.08);
       border-radius:20px;
       box-shadow:var(--shadow-card);
@@ -755,8 +763,9 @@
       color:var(--muted);
       padding:22px;
       border-radius:0;
-      margin-left:-18px;
-      margin-right:-18px;
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
     }
 
     .whatsapp-float{
@@ -847,6 +856,10 @@
 
       .hero{
         min-height:500px;
+        width:100%;
+        margin-left:0;
+        margin-right:0;
+        border-radius:0;
       }
 
       .hero-content{
@@ -861,17 +874,18 @@
         font-size:16px;
       }
 
-      .section{
-        padding:24px;
+      .promo-strip{
+        width:100%;
         margin-left:0;
         margin-right:0;
-        border-radius:24px;
       }
 
-      .hero{
+      .section{
+        padding:24px;
+        width:100%;
         margin-left:0;
         margin-right:0;
-        border-radius:28px;
+        border-radius:0;
       }
 
       .section-head h2{
@@ -900,28 +914,14 @@
       }
 
       footer{
+        width:100%;
         margin-left:0;
         margin-right:0;
-        border-radius:20px;
+        border-radius:0;
       }
     }
 
     @media (max-width:640px){
-      .top-strip{
-        min-height:42px;
-        padding:0 12px;
-      }
-
-      .top-strip-slider{
-        height:42px;
-      }
-
-      .top-strip-message{
-        font-size:11px;
-        line-height:1.35;
-        padding:0 8px;
-      }
-
       .container{
         padding:0 0 26px;
       }
@@ -1052,10 +1052,24 @@
         border-radius:14px;
       }
 
+      .promo-strip{
+        min-height:48px;
+      }
+
+      .promo-slider{
+        height:48px;
+      }
+
+      .promo-message{
+        font-size:11px;
+        line-height:1.35;
+        padding:0 10px;
+      }
+
       .section{
         margin-top:16px;
         padding:20px 14px;
-        border-radius:22px 22px 0 0;
+        border-radius:0;
         border-left:none;
         border-right:none;
       }
@@ -1207,24 +1221,14 @@
       }
 
       footer{
-        margin:18px 14px 0;
+        margin-top:18px;
         padding:18px;
-        border-radius:18px;
         font-size:12px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="top-strip">
-    <div class="top-strip-slider" id="topStripSlider">
-      <span class="top-strip-message active">Todos los pines traen bolsita de empaque</span>
-      <span class="top-strip-message">Promociones a partir de la compra de 2 pines o más</span>
-      <span class="top-strip-message">Pídenos por WhatsApp y arma tu surtido</span>
-      <span class="top-strip-message">Compras a partir de 3 unidades</span>
-    </div>
-  </div>
-
   <header>
     <div class="navbar">
       <div class="nav-top">
@@ -1261,6 +1265,15 @@
           <a class="btn btn-primary" href="catalogo.html">Ver catálogo</a>
           <a class="btn btn-light" href="https://wa.me/573116821619?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20los%20pines%20de%20Pin%20Lab%20Co." target="_blank">Comprar por WhatsApp</a>
         </div>
+      </div>
+    </section>
+
+    <section class="promo-strip">
+      <div class="promo-slider">
+        <span class="promo-message active">Todos los pines traen bolsita de empaque</span>
+        <span class="promo-message">Promociones a partir de la compra de 2 pines o más</span>
+        <span class="promo-message">Pídenos por WhatsApp y arma tu surtido</span>
+        <span class="promo-message">Compras a partir de 3 unidades</span>
       </div>
     </section>
 
@@ -1529,17 +1542,17 @@
   </a>
 
   <script>
-    const topStripMessages = document.querySelectorAll('.top-strip-message');
-    let topStripIndex = 0;
+    const promoMessages = document.querySelectorAll('.promo-message');
+    let promoIndex = 0;
 
-    function rotateTopStripMessages() {
-      if (!topStripMessages.length) return;
-      topStripMessages[topStripIndex].classList.remove('active');
-      topStripIndex = (topStripIndex + 1) % topStripMessages.length;
-      topStripMessages[topStripIndex].classList.add('active');
+    function rotatePromoMessages() {
+      if (!promoMessages.length) return;
+      promoMessages[promoIndex].classList.remove('active');
+      promoIndex = (promoIndex + 1) % promoMessages.length;
+      promoMessages[promoIndex].classList.add('active');
     }
 
-    setInterval(rotateTopStripMessages, 3000);
+    setInterval(rotatePromoMessages, 3000);
 
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
