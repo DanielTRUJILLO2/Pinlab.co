@@ -42,18 +42,48 @@
     .container{
       width:min(100%, 1400px);
       margin:0 auto;
-      padding:0 14px 28px;
+      padding:0 18px 30px;
     }
 
     .top-strip{
       background:linear-gradient(135deg, var(--azul), var(--azul-oscuro));
       color:#fff;
+      position:relative;
+      overflow:hidden;
+      min-height:46px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 14px;
+    }
+
+    .top-strip-slider{
+      position:relative;
+      width:100%;
+      max-width:1200px;
+      height:46px;
+    }
+
+    .top-strip-message{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       text-align:center;
       font-weight:700;
       font-size:13px;
       line-height:1.4;
-      padding:12px 14px;
       letter-spacing:.2px;
+      opacity:0;
+      transform:translateX(30px);
+      transition:opacity .45s ease, transform .45s ease;
+      padding:0 10px;
+    }
+
+    .top-strip-message.active{
+      opacity:1;
+      transform:translateX(0);
     }
 
     header{
@@ -61,6 +91,7 @@
       backdrop-filter: blur(6px);
       box-shadow:var(--shadow-soft);
       border-bottom:1px solid rgba(0,0,0,.03);
+      position:static;
     }
 
     .navbar{
@@ -68,28 +99,27 @@
       margin:0 auto;
       display:flex;
       flex-direction:column;
-      gap:14px;
-      padding:14px;
+      gap:18px;
+      padding:18px;
     }
 
     .nav-top{
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:12px;
+      justify-content:center;
+      gap:18px;
     }
 
     .nav-left{
       display:flex;
       align-items:center;
-      gap:14px;
-      min-width:0;
-      flex:1;
+      justify-content:center;
+      width:100%;
     }
 
     .logo-box{
-      width:180px;
-      height:180px;
+      width:200px;
+      height:200px;
       border:none;
       border-radius:20px;
       background:transparent;
@@ -108,21 +138,7 @@
     }
 
     .brand{
-      min-width:0;
-    }
-
-    .brand h1{
-      font-size:18px;
-      line-height:1.1;
-      margin-bottom:3px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .brand p{
-      color:var(--muted);
-      font-size:13px;
+      display:none;
     }
 
     .menu-toggle{
@@ -144,39 +160,76 @@
       user-select:none;
     }
 
+    .nav-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:22px;
+      padding-top:4px;
+    }
+
     .main-nav{
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:18px;
+      gap:30px;
       flex-wrap:wrap;
+      width:100%;
     }
 
     .main-nav a{
       text-decoration:none;
       color:#24303f;
-      font-size:13px;
+      font-size:14px;
       font-weight:800;
       letter-spacing:.3px;
-      padding:8px 0;
+      padding:10px 0;
       transition:.2s ease;
       position:relative;
+      white-space:nowrap;
+    }
+
+    .main-nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:4px;
+      width:0;
+      height:3px;
+      border-radius:999px;
+      background:linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+      transition:width .22s ease;
     }
 
     .main-nav a:hover{
       color:var(--azul);
     }
 
+    .main-nav a:hover::after{
+      width:100%;
+    }
+
     .hero{
-      margin-top:18px;
+      margin-top:22px;
       background:linear-gradient(135deg, #557396, #2f78bd);
       color:#fff;
-      border-radius:26px;
-      padding:30px 22px;
+      border-radius:30px;
+      padding:34px 24px;
       text-align:center;
       box-shadow:var(--shadow);
       position:relative;
       overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      top:-70px;
+      left:-70px;
+      width:200px;
+      height:200px;
+      border-radius:50%;
+      background:rgba(255,255,255,.06);
     }
 
     .hero::after{
@@ -195,6 +248,8 @@
       margin-bottom:10px;
       position:relative;
       z-index:1;
+      line-height:1.05;
+      letter-spacing:-.6px;
     }
 
     .hero p{
@@ -227,6 +282,7 @@
       margin-bottom:14px;
       color:#1c2735;
       line-height:1.1;
+      letter-spacing:-.4px;
     }
 
     .contact-card p{
@@ -310,19 +366,20 @@
     }
 
     .mini-note{
-      margin-top:18px;
+      margin-top:22px;
       background:rgba(255,255,255,.92);
-      border-radius:22px;
-      padding:20px;
+      border-radius:24px;
+      padding:22px;
       box-shadow:var(--shadow-soft);
       border:1px solid rgba(0,0,0,.03);
       text-align:center;
     }
 
     .mini-note h3{
-      font-size:24px;
-      margin-bottom:8px;
+      font-size:26px;
+      margin-bottom:10px;
       line-height:1.1;
+      letter-spacing:-.4px;
     }
 
     .mini-note p{
@@ -334,7 +391,7 @@
     }
 
     footer{
-      margin-top:26px;
+      margin-top:30px;
       background:rgba(255,255,255,.92);
       border-radius:22px;
       padding:22px;
@@ -356,63 +413,57 @@
       }
     }
 
-    @media (min-width: 641px){
+    @media (max-width:991px){
       .container{
-        padding:0 18px 30px;
+        padding:0 16px 28px;
       }
 
       .navbar{
-        padding:16px 18px;
-      }
-
-      .logo-box{
-        width:180px;
-        height:180px;
-      }
-
-      .brand h1{
-        font-size:24px;
-      }
-
-      .brand p{
-        font-size:14px;
-      }
-    }
-
-    @media (min-width: 992px){
-      .navbar{
-        display:flex;
-        flex-direction:column;
-        gap:16px;
-        padding:18px;
+        gap:10px;
+        padding:12px;
       }
 
       .nav-top{
-        display:flex;
         align-items:center;
-        justify-content:space-between;
-        gap:20px;
+        justify-content:center;
+      }
+
+      .logo-box{
+        width:200px;
+        height:200px;
+      }
+
+      .nav-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:14px;
       }
 
       .main-nav{
-        justify-content:center;
-        gap:28px;
-      }
-
-      .main-nav a{
-        font-size:14px;
+        width:100%;
+        justify-content:flex-start;
+        gap:22px;
       }
 
       .hero h2{
-        font-size:42px;
+        font-size:36px;
       }
     }
 
-    @media (max-width: 640px){
+    @media (max-width:640px){
       .top-strip{
+        min-height:42px;
+        padding:0 12px;
+      }
+
+      .top-strip-slider{
+        height:42px;
+      }
+
+      .top-strip-message{
         font-size:11px;
         line-height:1.35;
-        padding:10px 12px;
+        padding:0 8px;
       }
 
       .navbar{
@@ -494,6 +545,10 @@
         width:100%;
         font-size:14px;
         padding:8px 0;
+      }
+
+      .main-nav a::after{
+        display:none;
       }
 
       .menu-toggle:checked ~ .nav-bottom .main-nav{
@@ -582,7 +637,12 @@
 </head>
 <body>
   <div class="top-strip">
-    COMPRAS A PARTIR DE 3 UNIDADES · PUEDEN SER SURTIDAS · PÍDENOS POR WHATSAPP
+    <div class="top-strip-slider" id="topStripSlider">
+      <span class="top-strip-message active">Todos los pines traen bolsita de empaque</span>
+      <span class="top-strip-message">Promociones a partir de la compra de 2 pines o más</span>
+      <span class="top-strip-message">Pídenos por WhatsApp y arma tu surtido</span>
+      <span class="top-strip-message">Compras a partir de 3 unidades</span>
+    </div>
   </div>
 
   <header>
@@ -632,6 +692,11 @@
             <strong>Atención directa</strong>
             <span>La respuesta es personalizada para resolver dudas y confirmar tu compra rápidamente.</span>
           </div>
+
+          <div class="highlight-box">
+            <strong>Compra con confianza</strong>
+            <span>Tus pines llegan listos para entregar o regalar, con una presentación cuidada y bonita.</span>
+          </div>
         </div>
 
         <a class="whatsapp-btn" href="https://wa.me/573116821619?text=Hola,%20quiero%20hacer%20un%20pedido%20en%20Pin%20Lab%20Co." target="_blank">
@@ -654,6 +719,11 @@
           </div>
 
           <div class="info-item">
+            <strong>Empaque</strong>
+            <span>Cada pin incluye su bolsita de empaque para una presentación más bonita y cuidada.</span>
+          </div>
+
+          <div class="info-item">
             <strong>Entregas</strong>
             <span>Consulta por condiciones especiales de entrega y opciones disponibles según tu pedido.</span>
           </div>
@@ -668,13 +738,27 @@
 
     <section class="mini-note">
       <h3>¿Ya elegiste tus favoritos?</h3>
-      <p>Ve al catálogo, anota las referencias que más te gusten y escríbenos por WhatsApp para ayudarte con tu pedido de forma rápida y clara.</p>
+      <p>Ve al catálogo, anota las referencias que más te gusten y escríbenos por WhatsApp para ayudarte con tu pedido de forma rápida, clara y segura.</p>
     </section>
 
     <footer>
       © 2026 Pin Lab Co. · Cali, Colombia
-
     </footer>
   </div>
+
+  <script>
+    const topStripMessages = document.querySelectorAll('.top-strip-message');
+    let topStripIndex = 0;
+
+    function rotateTopStripMessages() {
+      if (!topStripMessages.length) return;
+
+      topStripMessages[topStripIndex].classList.remove('active');
+      topStripIndex = (topStripIndex + 1) % topStripMessages.length;
+      topStripMessages[topStripIndex].classList.add('active');
+    }
+
+    setInterval(rotateTopStripMessages, 3000);
+  </script>
 </body>
 </html>
