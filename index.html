@@ -57,7 +57,7 @@
     }
 
     header{
-      background:rgba(255,255,255,.90);
+      background:rgba(255,255,255,.92);
       backdrop-filter: blur(12px);
       box-shadow:0 10px 24px rgba(20,35,60,.06);
       border-bottom:1px solid rgba(36,79,130,.08);
@@ -69,29 +69,25 @@
       width:min(100%, 1400px);
       margin:0 auto;
       display:flex;
-      flex-direction:column;
-      gap:10px;
-      padding:12px 18px;
-    }
-
-    .nav-top{
-      display:flex;
       align-items:center;
-      justify-content:center;
+      justify-content:space-between;
+      gap:28px;
+      padding:14px 24px;
+      min-height:110px;
     }
 
     .nav-left{
       display:flex;
       align-items:center;
-      justify-content:center;
-      width:100%;
+      gap:26px;
+      min-width:0;
+      flex:1;
     }
 
     .logo-box{
-      width:145px;
-      height:145px;
+      width:112px;
+      height:112px;
       border:none;
-      border-radius:20px;
       background:transparent;
       display:flex;
       align-items:center;
@@ -121,24 +117,24 @@
       background:#f2f2f2;
       font-size:24px;
       cursor:pointer;
-      flex-shrink:0;
       align-items:center;
       justify-content:center;
       user-select:none;
+      flex-shrink:0;
     }
 
     .nav-bottom{
       display:flex;
       align-items:center;
-      justify-content:center;
-      gap:22px;
-      padding-top:0;
+      justify-content:flex-start;
+      flex:1;
+      min-width:0;
     }
 
     .main-nav{
       display:flex;
       align-items:center;
-      justify-content:center;
+      justify-content:flex-start;
       gap:34px;
       flex-wrap:wrap;
       width:100%;
@@ -147,9 +143,9 @@
     .main-nav a{
       text-decoration:none;
       color:var(--texto-fuerte);
-      font-size:14px;
+      font-size:15px;
       font-weight:800;
-      letter-spacing:.7px;
+      letter-spacing:.45px;
       padding:8px 0;
       transition:.25s ease;
       position:relative;
@@ -177,7 +173,7 @@
     }
 
     .hero{
-      margin-top:24px;
+      margin-top: 0;
       overflow:hidden;
       min-height:560px;
       box-shadow:var(--shadow);
@@ -295,7 +291,7 @@
       color:#fff;
       position:relative;
       overflow:hidden;
-      min-height:54px;
+      min-height:58px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -308,7 +304,7 @@
       position:relative;
       width:100%;
       max-width:1200px;
-      height:54px;
+      height:58px;
     }
 
     .promo-message{
@@ -318,15 +314,16 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      font-weight:800;
-      font-size:14px;
-      line-height:1.4;
-      letter-spacing:.35px;
+      font-weight:900;
+      font-size:17px;
+      line-height:1.3;
+      letter-spacing:.9px;
       color:#fff;
       opacity:0;
       transform:translateX(26px);
       transition:opacity .45s ease, transform .45s ease;
       padding:0 18px;
+      text-transform:uppercase;
     }
 
     .promo-message.active{
@@ -335,7 +332,7 @@
     }
 
     .section{
-      margin-top:28px;
+      margin-top:0px;
       background:rgba(255,255,255,.84);
       box-shadow:var(--shadow-soft);
       border:1px solid rgba(36,79,130,.08);
@@ -830,13 +827,18 @@
     }
 
     @media (max-width:991px){
-      .container{
-        padding:0 16px 28px;
+      .navbar{
+        min-height:auto;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+        padding:12px 16px;
       }
 
-      .navbar{
-        gap:10px;
-        padding:12px 16px;
+      .nav-left{
+        width:100%;
+        justify-content:center;
       }
 
       .logo-box{
@@ -845,6 +847,7 @@
       }
 
       .nav-bottom{
+        width:100%;
         justify-content:center;
       }
 
@@ -878,6 +881,10 @@
         width:100%;
         margin-left:0;
         margin-right:0;
+      }
+
+      .promo-message{
+        font-size:15px;
       }
 
       .section{
@@ -927,20 +934,15 @@
       }
 
       .navbar{
+        flex-direction:column;
+        align-items:stretch;
+        justify-content:flex-start;
         gap:8px;
         padding:10px 14px 12px;
       }
 
-      .nav-top{
-        position:relative;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        min-height:90px;
-        padding:0;
-      }
-
       .nav-left{
+        position:relative;
         width:100%;
         display:flex;
         justify-content:center;
@@ -1053,21 +1055,22 @@
       }
 
       .promo-strip{
-        min-height:48px;
+        min-height:50px;
       }
 
       .promo-slider{
-        height:48px;
+        height:50px;
       }
 
       .promo-message{
-        font-size:11px;
+        font-size:12px;
         line-height:1.35;
         padding:0 10px;
+        letter-spacing:.55px;
       }
 
       .section{
-        margin-top:16px;
+        margin-top:0px;
         padding:20px 14px;
         border-radius:0;
         border-left:none;
@@ -1231,25 +1234,23 @@
 <body>
   <header>
     <div class="navbar">
-      <div class="nav-top">
+      <div class="nav-left">
         <label for="menu-toggle" class="menu-btn">☰</label>
 
-        <div class="nav-left">
-          <div class="logo-box">
-            <img src="imagenes/logo.png" alt="Logo Pin Lab Co." onerror="this.style.display='none'; this.parentElement.innerHTML='Logo';">
-          </div>
+        <div class="logo-box">
+          <img src="imagenes/logo.png" alt="Logo Pin Lab Co." onerror="this.style.display='none'; this.parentElement.innerHTML='Logo';">
         </div>
-      </div>
 
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
 
-      <div class="nav-bottom">
-        <nav class="main-nav">
-          <a href="index.html">INICIO</a>
-          <a href="catalogo.html">CATÁLOGO</a>
-          <a href="preguntas.html">PREGUNTAS FRECUENTES</a>
-          <a href="contacto.html">CONTACTO</a>
-        </nav>
+        <div class="nav-bottom">
+          <nav class="main-nav">
+            <a href="index.html">INICIO</a>
+            <a href="catalogo.html">CATÁLOGO</a>
+            <a href="preguntas.html">PREGUNTAS FRECUENTES</a>
+            <a href="contacto.html">CONTACTO</a>
+          </nav>
+        </div>
       </div>
     </div>
   </header>
@@ -1270,10 +1271,10 @@
 
     <section class="promo-strip">
       <div class="promo-slider">
-        <span class="promo-message active">Todos los pines traen bolsita de empaque</span>
-        <span class="promo-message">Promociones a partir de la compra de 2 pines o más</span>
-        <span class="promo-message">Pídenos por WhatsApp y arma tu surtido</span>
-        <span class="promo-message">Compras a partir de 3 unidades</span>
+        <span class="promo-message active">TODOS LOS PINES TRAEN BOLSITA DE EMPAQUE</span>
+        <span class="promo-message">PROMOCIONES A PARTIR DE LA COMPRA DE 2 PINES O MÁS</span>
+        <span class="promo-message">PÍDENOS POR WHATSAPP Y ARMA TU SURTIDO</span>
+        <span class="promo-message">COMPRAS A PARTIR DE 3 UNIDADES</span>
       </div>
     </section>
 
