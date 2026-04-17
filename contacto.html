@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pin Lab Co. - Preguntas frecuentes</title>
+  <title>Pin Lab Co. - Contacto</title>
   <link rel="icon" type="image/png" href="imagenes/favicon.png" />
   <style>
     :root{
@@ -15,6 +15,8 @@
       --texto-fuerte:#223247;
       --muted:#6d6d6d;
       --muted-2:#718096;
+      --bg:#f6f3ee;
+      --card:rgba(255,255,255,.88);
       --line:#e8e8e8;
       --line-blue:rgba(36,79,130,.10);
       --shadow:0 18px 40px rgba(22,34,57,.10);
@@ -24,6 +26,7 @@
       --verde-oscuro:#166247;
       --negro-suave:#24272c;
       --gris-oscuro:#343942;
+      --radius:24px;
     }
 
     *{
@@ -119,6 +122,7 @@
       width:46px;
       height:46px;
       border:none;
+      border-radius:14px;
       background:#f2f2f2;
       font-size:24px;
       cursor:pointer;
@@ -164,6 +168,7 @@
       bottom:2px;
       width:0;
       height:3px;
+      border-radius:999px;
       background:linear-gradient(135deg, var(--azul), var(--azul-oscuro));
       transition:width .22s ease;
     }
@@ -195,13 +200,13 @@
       text-decoration:none;
     }
 
-    .faq-hero{
+    .contact-hero{
       margin-top:0;
       min-height:330px;
       background:
         linear-gradient(90deg, rgba(16,24,38,.62) 0%, rgba(16,24,38,.38) 40%, rgba(16,24,38,.22) 100%),
         linear-gradient(180deg, rgba(16,24,38,.18) 0%, rgba(16,24,38,.42) 100%),
-        url("imagenes/banner-imagen-contacto.jpg") center/cover no-repeat;
+        url("imagenes/banner-imagen-catalogo.jpg") center/cover no-repeat;
       color:#fff;
       width:100vw;
       margin-left:calc(50% - 50vw);
@@ -215,7 +220,7 @@
       box-shadow:var(--shadow);
     }
 
-    .faq-hero::before{
+    .contact-hero::before{
       content:"";
       position:absolute;
       inset:0;
@@ -225,7 +230,7 @@
       pointer-events:none;
     }
 
-    .faq-hero-inner{
+    .contact-hero-inner{
       max-width:980px;
       margin:0 auto;
       position:relative;
@@ -233,7 +238,7 @@
       padding:44px 20px;
     }
 
-    .faq-pill{
+    .contact-pill{
       display:inline-block;
       padding:9px 15px;
       border-radius:999px;
@@ -247,7 +252,7 @@
       letter-spacing:.7px;
     }
 
-    .faq-hero h1{
+    .contact-hero h1{
       font-size:54px;
       line-height:1;
       margin-bottom:12px;
@@ -255,7 +260,7 @@
       text-shadow:0 10px 24px rgba(0,0,0,.20);
     }
 
-    .faq-hero p{
+    .contact-hero p{
       font-size:18px;
       line-height:1.65;
       max-width:780px;
@@ -285,115 +290,229 @@
       right:-60px;
       width:180px;
       height:180px;
+      border-radius:50%;
       background:radial-gradient(circle, rgba(47,120,189,.10), transparent 68%);
       pointer-events:none;
     }
 
-    .faq-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:18px;
+    .contact-section-head{
       position:relative;
       z-index:1;
+      margin-bottom:26px;
+      display:grid;
+      gap:10px;
+      text-align:center;
     }
 
-    .faq-card{
+    .contact-section-head h2{
+      font-size:40px;
+      line-height:1.02;
+      letter-spacing:-1px;
+      color:#1d2d40;
+    }
+
+    .contact-section-head p{
+      color:var(--muted);
+      font-size:16px;
+      max-width:760px;
+      margin:0 auto;
+      line-height:1.6;
+    }
+
+    .contact-main-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:24px;
+      position:relative;
+      z-index:1;
+      align-items:stretch;
+    }
+
+    .contact-info-panel{
+      display:grid;
+      gap:20px;
+    }
+
+    .contact-card{
       background:rgba(255,255,255,.97);
       border:1px solid rgba(36,79,130,.08);
+      border-radius:24px;
       box-shadow:var(--shadow-card);
       overflow:hidden;
-      transition:transform .25s ease, box-shadow .25s ease;
     }
 
-    .faq-card:hover{
-      transform:translateY(-3px);
-      box-shadow:0 18px 32px rgba(24,39,75,.10);
+    .contact-card-body{
+      padding:24px;
+      display:grid;
+      gap:14px;
     }
 
-    .faq-card-body{
+    .contact-card h3{
+      font-size:30px;
+      color:#1d2d40;
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+
+    .contact-card p{
+      color:var(--muted-2);
+      line-height:1.75;
+      font-size:15px;
+    }
+
+    .contact-highlight{
+      display:grid;
+      gap:12px;
+      margin-top:4px;
+    }
+
+    .highlight-box{
+      background:rgba(47,120,189,.06);
+      border:1px solid rgba(36,79,130,.08);
+      border-radius:18px;
+      padding:15px 16px;
+    }
+
+    .highlight-box strong{
+      display:block;
+      margin-bottom:5px;
+      color:#1f3145;
+      font-size:15px;
+    }
+
+    .highlight-box span{
+      color:#576b82;
+      line-height:1.65;
+      font-size:14px;
+    }
+
+    .whatsapp-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      background:#25D366;
+      color:#fff;
+      padding:14px 20px;
+      border-radius:14px;
+      font-weight:800;
+      margin-top:4px;
+      font-size:14px;
+      transition:.2s ease;
+      box-shadow:0 8px 16px rgba(37,211,102,.18);
+      width:max-content;
+    }
+
+    .whatsapp-btn:hover{
+      background:#1eb95a;
+      transform:translateY(-1px);
+    }
+
+    .info-list{
+      display:grid;
+      gap:12px;
+      margin-top:4px;
+    }
+
+    .info-item{
+      padding:15px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(36,79,130,.08);
+      box-shadow:0 8px 18px rgba(0,0,0,.03);
+    }
+
+    .info-item strong{
+      display:block;
+      margin-bottom:4px;
+      color:#1f3145;
+      font-size:15px;
+    }
+
+    .info-item span{
+      color:#5b6f86;
+      line-height:1.65;
+      font-size:14px;
+    }
+
+    .contact-visual-panel{
+      display:grid;
+      gap:20px;
+    }
+
+    .ambient-card{
+      background:rgba(255,255,255,.97);
+      border:1px solid rgba(36,79,130,.08);
+      border-radius:24px;
+      box-shadow:var(--shadow-card);
+      overflow:hidden;
+      display:grid;
+      grid-template-rows:auto 1fr;
+      min-height:100%;
+    }
+
+    .ambient-image{
+      min-height:320px;
+      background:
+        linear-gradient(180deg, rgba(18,28,42,.12), rgba(18,28,42,.22)),
+        url("imagenes/imagen-contacto.jpg") center/cover no-repeat;
+      position:relative;
+    }
+
+    .ambient-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.12), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,.08), transparent 24%);
+      pointer-events:none;
+    }
+
+    .ambient-copy{
       padding:22px;
       display:grid;
       gap:12px;
     }
 
-    .faq-label{
-      display:inline-flex;
-      width:max-content;
-      padding:7px 12px;
-      background:rgba(47,120,189,.10);
-      border:1px solid rgba(47,120,189,.12);
-      color:var(--azul-oscuro);
-      font-size:11px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.5px;
+    .ambient-copy h3{
+      font-size:28px;
+      color:#1d2d40;
+      line-height:1.1;
     }
 
-    .faq-question{
-      font-size:22px;
-      font-weight:800;
-      color:#1f3145;
-      line-height:1.2;
-      letter-spacing:-.3px;
-    }
-
-    .faq-answer{
+    .ambient-copy p{
       color:var(--muted-2);
+      line-height:1.7;
       font-size:15px;
-      line-height:1.75;
     }
 
-    .faq-cta-wrap{
+    .mini-note{
       position:relative;
       z-index:1;
       margin-top:28px;
-      display:grid;
-      gap:14px;
-    }
-
-    .faq-cta-title{
-      font-size:30px;
-      color:#1d2d40;
-      font-weight:900;
-      line-height:1.05;
+      background:linear-gradient(135deg, rgba(47,120,189,.10), rgba(36,79,130,.06));
+      border-radius:24px;
+      padding:24px;
+      box-shadow:var(--shadow-card);
+      border:1px solid rgba(36,79,130,.08);
       text-align:center;
-      letter-spacing:-.6px;
     }
 
-    .faq-cta-text{
+    .mini-note h3{
+      font-size:30px;
+      margin-bottom:10px;
+      line-height:1.08;
+      letter-spacing:-.4px;
+      color:#1d2d40;
+    }
+
+    .mini-note p{
       color:var(--muted-2);
       font-size:15px;
       line-height:1.7;
-      text-align:center;
       max-width:760px;
       margin:0 auto;
-    }
-
-    .faq-cta-btn{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:100%;
-      text-decoration:none;
-      border:none;
-      background:
-        linear-gradient(135deg, #1f7a5a 0%, #166247 45%, #244f82 100%);
-      color:#fff;
-      padding:18px 22px;
-      font-size:18px;
-      font-weight:900;
-      box-shadow:
-        0 14px 28px rgba(31,122,90,.20),
-        0 8px 18px rgba(36,79,130,.10);
-      transition:transform .22s ease, box-shadow .22s ease;
-      letter-spacing:.2px;
-    }
-
-    .faq-cta-btn:hover{
-      transform:translateY(-2px);
-      box-shadow:
-        0 18px 34px rgba(31,122,90,.24),
-        0 10px 22px rgba(36,79,130,.14);
     }
 
     footer{
@@ -460,8 +579,16 @@
     }
 
     @media (max-width:1199px){
-      .faq-hero h1{
+      .contact-hero h1{
         font-size:46px;
+      }
+
+      .contact-main-grid{
+        grid-template-columns:1fr;
+      }
+
+      .ambient-image{
+        min-height:280px;
       }
     }
 
@@ -496,14 +623,14 @@
         gap:22px;
       }
 
-      .faq-hero{
+      .contact-hero{
         width:100%;
         margin-left:0;
         margin-right:0;
         min-height:280px;
       }
 
-      .faq-hero h1{
+      .contact-hero h1{
         font-size:40px;
       }
 
@@ -512,10 +639,6 @@
         margin-left:0;
         margin-right:0;
         padding:24px;
-      }
-
-      .faq-grid{
-        grid-template-columns:1fr;
       }
 
       footer{
@@ -567,6 +690,7 @@
         width:48px;
         height:48px;
         border:none;
+        border-radius:12px;
         background:transparent;
         font-size:36px;
         line-height:1;
@@ -631,6 +755,7 @@
         width:42px;
         height:42px;
         border:none;
+        border-radius:12px;
         background:#f3f4f6;
         color:#1f1f1f;
         font-size:26px;
@@ -652,6 +777,7 @@
         font-weight:800;
         letter-spacing:.4px;
         padding:14px 12px;
+        border-radius:14px;
         transition:.2s ease;
       }
 
@@ -671,27 +797,27 @@
         transform:translateX(0);
       }
 
-      .faq-hero{
+      .contact-hero{
         min-height:230px;
         background-position:center;
       }
 
-      .faq-hero-inner{
+      .contact-hero-inner{
         padding:26px 16px;
       }
 
-      .faq-pill{
+      .contact-pill{
         font-size:11px;
         padding:7px 12px;
         margin-bottom:14px;
       }
 
-      .faq-hero h1{
+      .contact-hero h1{
         font-size:32px;
         line-height:1;
       }
 
-      .faq-hero p{
+      .contact-hero p{
         font-size:14px;
         line-height:1.55;
       }
@@ -702,29 +828,63 @@
         border-right:none;
       }
 
-      .faq-card-body{
+      .contact-section-head{
+        margin-bottom:20px;
+      }
+
+      .contact-section-head h2{
+        font-size:30px;
+      }
+
+      .contact-section-head p{
+        font-size:14px;
+      }
+
+      .contact-card-body,
+      .ambient-copy{
         padding:18px;
       }
 
-      .faq-question{
-        font-size:19px;
-      }
-
-      .faq-answer{
-        font-size:14px;
-      }
-
-      .faq-cta-title{
+      .contact-card h3,
+      .ambient-copy h3,
+      .mini-note h3{
         font-size:24px;
       }
 
-      .faq-cta-text{
+      .contact-card p,
+      .ambient-copy p,
+      .mini-note p{
         font-size:14px;
       }
 
-      .faq-cta-btn{
-        font-size:16px;
-        padding:16px 14px;
+      .highlight-box,
+      .info-item{
+        padding:14px;
+        border-radius:16px;
+      }
+
+      .highlight-box strong,
+      .info-item strong{
+        font-size:14px;
+      }
+
+      .highlight-box span,
+      .info-item span{
+        font-size:13px;
+      }
+
+      .ambient-image{
+        min-height:220px;
+      }
+
+      .whatsapp-btn{
+        width:100%;
+      }
+
+      .mini-note{
+        margin-top:22px;
+        padding:18px;
+        border-radius:20px;
       }
 
       .whatsapp-float{
@@ -790,72 +950,102 @@
   </aside>
 
   <div class="container">
-    <section class="faq-hero">
-      <div class="faq-hero-inner">
-        <span class="faq-pill">Resuelve tus dudas</span>
-        <h1>Preguntas frecuentes</h1>
-        <p>Todo lo que necesitas saber antes de hacer tu pedido para que comprar tus pines sea más fácil, claro y cómodo.</p>
+    <section class="contact-hero">
+      <div class="contact-hero-inner">
+        <span class="contact-pill">Atención directa</span>
+        <h1>Contacto</h1>
+        <p>Haz tu pedido, consulta disponibilidad o pregúntanos por varias referencias al mismo tiempo. Te respondemos directo por WhatsApp.</p>
       </div>
     </section>
 
     <section class="section-shell">
-      <div class="faq-grid">
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre los pines</span>
-            <h3 class="faq-question">¿Los pines incluyen empaque?</h3>
-            <p class="faq-answer">Sí, cada pin incluye su bolsita de empaque para que llegue protegido y listo para usar o regalar. Es un detalle simple, pero hace que todo se vea mucho más bonito.</p>
-          </div>
-        </article>
-
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre los pines</span>
-            <h3 class="faq-question">¿De qué material son?</h3>
-            <p class="faq-answer">Son pines metálicos, lo que les da mayor calidad, durabilidad y un acabado mucho más bonito.</p>
-          </div>
-        </article>
-
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre los pines</span>
-            <h3 class="faq-question">¿Puedo mezclar diseños?</h3>
-            <p class="faq-answer">Sí, puedes elegir diferentes referencias en un mismo pedido sin problema.</p>
-          </div>
-        </article>
-
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre pedidos</span>
-            <h3 class="faq-question">¿Cómo hago mi pedido?</h3>
-            <p class="faq-answer">Solo escríbenos por WhatsApp con los pines que quieres y te ayudamos con todo el proceso.</p>
-          </div>
-        </article>
-
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre pedidos</span>
-            <h3 class="faq-question">¿Hay promociones?</h3>
-            <p class="faq-answer">Sí, manejamos promociones dependiendo de la cantidad que compres.</p>
-          </div>
-        </article>
-
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre pedidos</span>
-            <h3 class="faq-question">¿Puedo preguntar antes de comprar?</h3>
-            <p class="faq-answer">Claro, puedes escribirnos sin compromiso y resolver cualquier duda.</p>
-          </div>
-        </article>
+      <div class="contact-section-head">
+        <h2>Estamos listos para ayudarte</h2>
+        <p>Te organizamos la información de contacto de una forma más clara, visual y cómoda para que pedir tus pines se sienta fácil desde cualquier dispositivo.</p>
       </div>
 
-      <div class="faq-cta-wrap">
-        <h3 class="faq-cta-title">¿Tienes otra duda?</h3>
-        <p class="faq-cta-text">Si no encontraste aquí la respuesta, escríbenos por WhatsApp y te ayudamos rápido.</p>
-        <a class="faq-cta-btn" href="https://wa.me/573116821619?text=Hola,%20tengo%20una%20duda%20sobre%20los%20pines%20de%20Pin%20Lab%20Co." target="_blank">
-          Escríbenos por WhatsApp
-        </a>
+      <div class="contact-main-grid">
+        <div class="contact-info-panel">
+          <article class="contact-card">
+            <div class="contact-card-body">
+              <h3>Escríbenos</h3>
+              <p>Si ya viste pines que te gustaron en el catálogo, envíanos un mensaje con las referencias y te ayudamos con el pedido.</p>
+              <p>Puedes preguntarnos por disponibilidad, cantidad mínima, entrega y recomendaciones según el estilo que buscas.</p>
+
+              <div class="contact-highlight">
+                <div class="highlight-box">
+                  <strong>Pedido fácil</strong>
+                  <span>Solo envíanos las referencias de los pines que te gusten y te ayudamos a organizar todo.</span>
+                </div>
+
+                <div class="highlight-box">
+                  <strong>Atención directa</strong>
+                  <span>La respuesta es personalizada para resolver dudas y confirmar tu compra rápidamente.</span>
+                </div>
+
+                <div class="highlight-box">
+                  <strong>Compra con confianza</strong>
+                  <span>Tus pines llegan listos para entregar o regalar, con una presentación cuidada y bonita.</span>
+                </div>
+              </div>
+
+              <a class="whatsapp-btn" href="https://wa.me/573116821619?text=Hola,%20quiero%20hacer%20un%20pedido%20en%20Pin%20Lab%20Co." target="_blank">
+                Ir a WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="contact-card">
+            <div class="contact-card-body">
+              <h3>Información útil</h3>
+
+              <div class="info-list">
+                <div class="info-item">
+                  <strong>WhatsApp</strong>
+                  <span>+57 311 682 1619</span>
+                </div>
+
+                <div class="info-item">
+                  <strong>Pedidos</strong>
+                  <span>Compras a partir de 3 unidades. Pueden ser surtidas.</span>
+                </div>
+
+                <div class="info-item">
+                  <strong>Empaque</strong>
+                  <span>Cada pin incluye su bolsita de empaque para una presentación más bonita y cuidada.</span>
+                </div>
+
+                <div class="info-item">
+                  <strong>Entregas</strong>
+                  <span>Consulta por condiciones especiales de entrega y opciones disponibles según tu pedido.</span>
+                </div>
+
+                <div class="info-item">
+                  <strong>Atención</strong>
+                  <span>Respuesta rápida para ayudarte con disponibilidad, referencias y proceso de compra.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="contact-visual-panel">
+          <article class="ambient-card">
+            <div class="ambient-image"></div>
+            <div class="ambient-copy">
+              <h3>Un espacio pensado para que comprar sea más cómodo</h3>
+              <p>Aquí puedes poner una imagen que acompañe la experiencia de la página y haga que la sección de contacto se vea más cálida, bonita y profesional.</p>
+              <p>Guarda tu imagen con este nombre exacto para que aparezca aquí:</p>
+              <p><strong>imagenes/imagen-contacto.jpg</strong></p>
+            </div>
+          </article>
+        </div>
       </div>
+
+      <section class="mini-note">
+        <h3>¿Ya elegiste tus favoritos?</h3>
+        <p>Ve al catálogo, anota las referencias que más te gusten y escríbenos por WhatsApp para ayudarte con tu pedido de forma rápida, clara y segura.</p>
+      </section>
     </section>
 
     <footer>
