@@ -275,102 +275,182 @@
       width:100vw;
       margin-left:calc(50% - 50vw);
       margin-right:calc(50% - 50vw);
-      padding:34px 42px 40px;
+      padding:0;
     }
 
-    .section-shell::before{
-      content:"";
-      position:absolute;
-      top:-60px;
-      right:-60px;
-      width:180px;
-      height:180px;
-      background:radial-gradient(circle, rgba(47,120,189,.10), transparent 68%);
-      pointer-events:none;
-    }
-
-    .faq-grid{
+    .faq-layout{
       display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:18px;
-      position:relative;
-      z-index:1;
+      grid-template-columns:1.02fr .98fr;
+      min-height:100%;
     }
 
-    .faq-card{
-      background:rgba(255,255,255,.97);
-      border:1px solid rgba(36,79,130,.08);
-      box-shadow:var(--shadow-card);
-      overflow:hidden;
-      transition:transform .25s ease, box-shadow .25s ease;
+    .faq-left,
+    .faq-right{
+      padding:44px 42px;
     }
 
-    .faq-card:hover{
-      transform:translateY(-3px);
-      box-shadow:0 18px 32px rgba(24,39,75,.10);
+    .faq-left{
+      border-right:1px solid rgba(36,79,130,.08);
+      background:rgba(255,255,255,.72);
     }
 
-    .faq-card-body{
-      padding:22px;
+    .faq-right{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.92)),
+        radial-gradient(circle at top right, rgba(47,120,189,.10), transparent 24%);
       display:grid;
-      gap:12px;
+      align-content:start;
+      gap:24px;
     }
 
-    .faq-label{
-      display:inline-flex;
-      width:max-content;
-      padding:7px 12px;
-      background:rgba(47,120,189,.10);
-      border:1px solid rgba(47,120,189,.12);
-      color:var(--azul-oscuro);
-      font-size:11px;
-      font-weight:800;
+    .faq-block{
+      display:grid;
+      gap:16px;
+    }
+
+    .faq-line{
+      width:90px;
+      height:4px;
+      background:linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+    }
+
+    .faq-title{
+      font-size:42px;
+      line-height:1;
+      letter-spacing:-1px;
+      color:#1d2d40;
+    }
+
+    .faq-subtext{
+      color:var(--muted-2);
+      font-size:17px;
+      line-height:1.8;
+      max-width:760px;
+    }
+
+    .faq-list{
+      display:grid;
+      gap:0;
+      border-top:1px solid rgba(36,79,130,.10);
+      border-bottom:1px solid rgba(36,79,130,.10);
+    }
+
+    .faq-row{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:24px;
+      padding:22px 0;
+      border-bottom:1px solid rgba(36,79,130,.08);
+    }
+
+    .faq-row:last-child{
+      border-bottom:none;
+    }
+
+    .faq-row-label{
+      font-size:14px;
+      font-weight:900;
+      color:#203247;
       text-transform:uppercase;
       letter-spacing:.5px;
     }
 
-    .faq-question{
-      font-size:22px;
-      font-weight:800;
+    .faq-row-content{
+      display:grid;
+      gap:8px;
+    }
+
+    .faq-row-question{
       color:#1f3145;
-      line-height:1.2;
+      font-size:20px;
+      font-weight:900;
+      line-height:1.25;
       letter-spacing:-.3px;
     }
 
-    .faq-answer{
-      color:var(--muted-2);
+    .faq-row-answer{
+      color:#60758d;
+      font-size:16px;
+      line-height:1.8;
+    }
+
+    .right-card{
+      border:1px solid rgba(36,79,130,.08);
+      background:rgba(255,255,255,.70);
+      padding:24px 24px 22px;
+      display:grid;
+      gap:12px;
+    }
+
+    .right-card h3{
+      font-size:28px;
+      line-height:1.08;
+      color:#1d2d40;
+      letter-spacing:-.5px;
+    }
+
+    .right-card p{
+      color:#667b93;
       font-size:15px;
       line-height:1.75;
     }
 
-    .faq-cta-wrap{
-      position:relative;
-      z-index:1;
-      margin-top:28px;
+    .benefits-list{
       display:grid;
-      gap:14px;
+      gap:0;
+      border-top:1px solid rgba(36,79,130,.10);
+      border-bottom:1px solid rgba(36,79,130,.10);
     }
 
-    .faq-cta-title{
-      font-size:30px;
-      color:#1d2d40;
+    .benefit-row{
+      display:grid;
+      grid-template-columns:190px 1fr;
+      gap:18px;
+      padding:18px 0;
+      border-bottom:1px solid rgba(36,79,130,.08);
+    }
+
+    .benefit-row:last-child{
+      border-bottom:none;
+    }
+
+    .benefit-title{
+      font-size:14px;
       font-weight:900;
-      line-height:1.05;
-      text-align:center;
-      letter-spacing:-.6px;
+      color:#203247;
+      text-transform:uppercase;
+      letter-spacing:.45px;
     }
 
-    .faq-cta-text{
-      color:var(--muted-2);
+    .benefit-text{
+      color:#60758d;
       font-size:15px;
       line-height:1.7;
-      text-align:center;
-      max-width:760px;
-      margin:0 auto;
+    }
+
+    .faq-cta{
+      border:1px solid rgba(36,79,130,.08);
+      background:linear-gradient(135deg, rgba(47,120,189,.08), rgba(36,79,130,.04));
+      padding:26px 24px;
+      display:grid;
+      gap:12px;
+    }
+
+    .faq-cta h3{
+      font-size:32px;
+      line-height:1.05;
+      color:#1d2d40;
+      letter-spacing:-.7px;
+    }
+
+    .faq-cta p{
+      color:#60758d;
+      font-size:15px;
+      line-height:1.75;
     }
 
     .faq-cta-btn{
-      display:flex;
+      display:inline-flex;
       align-items:center;
       justify-content:center;
       width:100%;
@@ -380,7 +460,7 @@
         linear-gradient(135deg, #1f7a5a 0%, #166247 45%, #244f82 100%);
       color:#fff;
       padding:18px 22px;
-      font-size:18px;
+      font-size:17px;
       font-weight:900;
       box-shadow:
         0 14px 28px rgba(31,122,90,.20),
@@ -463,6 +543,15 @@
       .faq-hero h1{
         font-size:46px;
       }
+
+      .faq-layout{
+        grid-template-columns:1fr;
+      }
+
+      .faq-left{
+        border-right:none;
+        border-bottom:1px solid rgba(36,79,130,.08);
+      }
     }
 
     @media (max-width:991px){
@@ -511,11 +600,21 @@
         width:100%;
         margin-left:0;
         margin-right:0;
-        padding:24px;
       }
 
-      .faq-grid{
+      .faq-left,
+      .faq-right{
+        padding:30px 24px;
+      }
+
+      .faq-title{
+        font-size:36px;
+      }
+
+      .faq-row,
+      .benefit-row{
         grid-template-columns:1fr;
+        gap:8px;
       }
 
       footer{
@@ -696,30 +795,33 @@
         line-height:1.55;
       }
 
-      .section-shell{
-        padding:20px 14px 24px;
-        border-left:none;
-        border-right:none;
+      .faq-left,
+      .faq-right{
+        padding:22px 14px;
       }
 
-      .faq-card-body{
-        padding:18px;
+      .faq-title{
+        font-size:30px;
       }
 
-      .faq-question{
-        font-size:19px;
-      }
-
-      .faq-answer{
+      .faq-subtext,
+      .faq-row-answer,
+      .benefit-text,
+      .right-card p,
+      .faq-cta p{
         font-size:14px;
       }
 
-      .faq-cta-title{
+      .right-card h3{
         font-size:24px;
       }
 
-      .faq-cta-text{
-        font-size:14px;
+      .faq-cta h3{
+        font-size:28px;
+      }
+
+      .faq-row-question{
+        font-size:18px;
       }
 
       .faq-cta-btn{
@@ -799,62 +901,101 @@
     </section>
 
     <section class="section-shell">
-      <div class="faq-grid">
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre los pines</span>
-            <h3 class="faq-question">¿Los pines incluyen empaque?</h3>
-            <p class="faq-answer">Sí, cada pin incluye su bolsita de empaque para que llegue protegido y listo para usar o regalar. Es un detalle simple, pero hace que todo se vea mucho más bonito.</p>
+      <div class="faq-layout">
+        <div class="faq-left">
+          <div class="faq-block">
+            <div class="faq-line"></div>
+            <h2 class="faq-title">Todo claro antes de hacer tu pedido</h2>
+            <p class="faq-subtext">Aquí encontrarás respuestas rápidas y bien organizadas para que cualquier persona entienda fácilmente cómo funciona la compra, qué incluye cada pin y cómo hacer su pedido sin enredarse.</p>
           </div>
-        </article>
 
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre los pines</span>
-            <h3 class="faq-question">¿De qué material son?</h3>
-            <p class="faq-answer">Son pines metálicos, lo que les da mayor calidad, durabilidad y un acabado mucho más bonito.</p>
+          <div class="faq-list">
+            <div class="faq-row">
+              <div class="faq-row-label">Sobre los pines</div>
+              <div class="faq-row-content">
+                <div class="faq-row-question">¿Los pines incluyen empaque?</div>
+                <div class="faq-row-answer">Sí, cada pin incluye su bolsita de empaque para que llegue protegido y listo para usar o regalar. Es un detalle simple, pero hace que todo se vea mucho más bonito.</div>
+              </div>
+            </div>
+
+            <div class="faq-row">
+              <div class="faq-row-label">Sobre los pines</div>
+              <div class="faq-row-content">
+                <div class="faq-row-question">¿De qué material son?</div>
+                <div class="faq-row-answer">Son pines metálicos, lo que les da mayor calidad, durabilidad y un acabado mucho más bonito.</div>
+              </div>
+            </div>
+
+            <div class="faq-row">
+              <div class="faq-row-label">Sobre los pines</div>
+              <div class="faq-row-content">
+                <div class="faq-row-question">¿Puedo mezclar diseños?</div>
+                <div class="faq-row-answer">Sí, puedes elegir diferentes referencias en un mismo pedido sin problema.</div>
+              </div>
+            </div>
+
+            <div class="faq-row">
+              <div class="faq-row-label">Sobre pedidos</div>
+              <div class="faq-row-content">
+                <div class="faq-row-question">¿Cómo hago mi pedido?</div>
+                <div class="faq-row-answer">Solo escríbenos por WhatsApp con los pines que quieres y te ayudamos con todo el proceso.</div>
+              </div>
+            </div>
+
+            <div class="faq-row">
+              <div class="faq-row-label">Sobre pedidos</div>
+              <div class="faq-row-content">
+                <div class="faq-row-question">¿Hay promociones?</div>
+                <div class="faq-row-answer">Sí, manejamos promociones dependiendo de la cantidad que compres.</div>
+              </div>
+            </div>
+
+            <div class="faq-row">
+              <div class="faq-row-label">Sobre pedidos</div>
+              <div class="faq-row-content">
+                <div class="faq-row-question">¿Puedo preguntar antes de comprar?</div>
+                <div class="faq-row-answer">Claro, puedes escribirnos sin compromiso y resolver cualquier duda.</div>
+              </div>
+            </div>
           </div>
-        </article>
+        </div>
 
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre los pines</span>
-            <h3 class="faq-question">¿Puedo mezclar diseños?</h3>
-            <p class="faq-answer">Sí, puedes elegir diferentes referencias en un mismo pedido sin problema.</p>
-          </div>
-        </article>
+        <div class="faq-right">
+          <article class="right-card">
+            <h3>Compra fácil y sin enredos</h3>
+            <p>La idea de esta sección es que el cliente encuentre respuestas rápidas sin tener que abrir menús ni adivinar cómo funciona el proceso. Todo está visible y ordenado desde el principio.</p>
 
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre pedidos</span>
-            <h3 class="faq-question">¿Cómo hago mi pedido?</h3>
-            <p class="faq-answer">Solo escríbenos por WhatsApp con los pines que quieres y te ayudamos con todo el proceso.</p>
-          </div>
-        </article>
+            <div class="benefits-list">
+              <div class="benefit-row">
+                <div class="benefit-title">Empaque</div>
+                <div class="benefit-text">Cada pin llega con su bolsita para una presentación más bonita y cuidada.</div>
+              </div>
 
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre pedidos</span>
-            <h3 class="faq-question">¿Hay promociones?</h3>
-            <p class="faq-answer">Sí, manejamos promociones dependiendo de la cantidad que compres.</p>
-          </div>
-        </article>
+              <div class="benefit-row">
+                <div class="benefit-title">Material</div>
+                <div class="benefit-text">Los pines son metálicos, con un acabado resistente y visualmente bonito.</div>
+              </div>
 
-        <article class="faq-card">
-          <div class="faq-card-body">
-            <span class="faq-label">Sobre pedidos</span>
-            <h3 class="faq-question">¿Puedo preguntar antes de comprar?</h3>
-            <p class="faq-answer">Claro, puedes escribirnos sin compromiso y resolver cualquier duda.</p>
-          </div>
-        </article>
-      </div>
+              <div class="benefit-row">
+                <div class="benefit-title">Surtidos</div>
+                <div class="benefit-text">Puedes combinar diferentes referencias en un mismo pedido sin problema.</div>
+              </div>
 
-      <div class="faq-cta-wrap">
-        <h3 class="faq-cta-title">¿Tienes otra duda?</h3>
-        <p class="faq-cta-text">Si no encontraste aquí la respuesta, escríbenos por WhatsApp y te ayudamos rápido.</p>
-        <a class="faq-cta-btn" href="https://wa.me/573116821619?text=Hola,%20tengo%20una%20duda%20sobre%20los%20pines%20de%20Pin%20Lab%20Co." target="_blank">
-          Escríbenos por WhatsApp
-        </a>
+              <div class="benefit-row">
+                <div class="benefit-title">Atención</div>
+                <div class="benefit-text">Te ayudamos por WhatsApp con disponibilidad, referencias y dudas antes de comprar.</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-cta">
+            <h3>¿Tienes otra duda?</h3>
+            <p>Si no encontraste aquí la respuesta, escríbenos por WhatsApp y te ayudamos rápido.</p>
+            <a class="faq-cta-btn" href="https://wa.me/573116821619?text=Hola,%20tengo%20una%20duda%20sobre%20los%20pines%20de%20Pin%20Lab%20Co." target="_blank">
+              Escríbenos por WhatsApp
+            </a>
+          </article>
+        </div>
       </div>
     </section>
 
