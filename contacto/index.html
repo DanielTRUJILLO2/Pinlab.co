@@ -15,8 +15,6 @@
       --texto-fuerte:#223247;
       --muted:#6d6d6d;
       --muted-2:#718096;
-      --bg:#f6f3ee;
-      --card:rgba(255,255,255,.88);
       --line:#e8e8e8;
       --line-blue:rgba(36,79,130,.10);
       --shadow:0 18px 40px rgba(22,34,57,.10);
@@ -26,7 +24,6 @@
       --verde-oscuro:#166247;
       --negro-suave:#24272c;
       --gris-oscuro:#343942;
-      --radius:24px;
     }
 
     *{
@@ -280,110 +277,101 @@
       width:100vw;
       margin-left:calc(50% - 50vw);
       margin-right:calc(50% - 50vw);
-      padding:34px 42px 40px;
+      padding:0;
     }
 
-    .section-shell::before{
-      content:"";
-      position:absolute;
-      top:-60px;
-      right:-60px;
-      width:180px;
-      height:180px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(47,120,189,.10), transparent 68%);
-      pointer-events:none;
-    }
-
-    .contact-section-head{
-      position:relative;
-      z-index:1;
-      margin-bottom:26px;
+    .contact-layout{
       display:grid;
-      gap:10px;
-      text-align:center;
+      grid-template-columns:1.05fr .95fr;
+      min-height:100%;
     }
 
-    .contact-section-head h2{
-      font-size:40px;
-      line-height:1.02;
+    .contact-left,
+    .contact-right{
+      padding:44px 42px;
+    }
+
+    .contact-left{
+      border-right:1px solid rgba(36,79,130,.08);
+      background:rgba(255,255,255,.72);
+    }
+
+    .contact-right{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.92)),
+        radial-gradient(circle at top right, rgba(47,120,189,.10), transparent 24%);
+      display:grid;
+      align-content:start;
+      gap:26px;
+    }
+
+    .contact-block{
+      display:grid;
+      gap:16px;
+    }
+
+    .contact-title{
+      font-size:42px;
+      line-height:1;
       letter-spacing:-1px;
       color:#1d2d40;
     }
 
-    .contact-section-head p{
-      color:var(--muted);
-      font-size:16px;
-      max-width:760px;
-      margin:0 auto;
-      line-height:1.6;
-    }
-
-    .contact-main-grid{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:24px;
-      position:relative;
-      z-index:1;
-      align-items:stretch;
-    }
-
-    .contact-info-panel{
-      display:grid;
-      gap:20px;
-    }
-
-    .contact-card{
-      background:rgba(255,255,255,.97);
-      border:1px solid rgba(36,79,130,.08);
-      border-radius:24px;
-      box-shadow:var(--shadow-card);
-      overflow:hidden;
-    }
-
-    .contact-card-body{
-      padding:24px;
-      display:grid;
-      gap:14px;
-    }
-
-    .contact-card h3{
-      font-size:30px;
-      color:#1d2d40;
-      line-height:1.05;
-      letter-spacing:-.6px;
-    }
-
-    .contact-card p{
+    .contact-subtext{
       color:var(--muted-2);
-      line-height:1.75;
-      font-size:15px;
+      font-size:17px;
+      line-height:1.8;
+      max-width:760px;
     }
 
-    .contact-highlight{
+    .contact-line{
+      width:90px;
+      height:4px;
+      background:linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+    }
+
+    .info-stack{
       display:grid;
-      gap:12px;
-      margin-top:4px;
+      gap:0;
+      border-top:1px solid rgba(36,79,130,.10);
+      border-bottom:1px solid rgba(36,79,130,.10);
     }
 
-    .highlight-box{
-      background:rgba(47,120,189,.06);
-      border:1px solid rgba(36,79,130,.08);
-      border-radius:18px;
-      padding:15px 16px;
+    .info-row{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:24px;
+      padding:22px 0;
+      border-bottom:1px solid rgba(36,79,130,.08);
     }
 
-    .highlight-box strong{
-      display:block;
-      margin-bottom:5px;
-      color:#1f3145;
+    .info-row:last-child{
+      border-bottom:none;
+    }
+
+    .info-label{
       font-size:15px;
+      font-weight:900;
+      color:#203247;
+      text-transform:uppercase;
+      letter-spacing:.5px;
     }
 
-    .highlight-box span{
-      color:#576b82;
-      line-height:1.65;
-      font-size:14px;
+    .info-value{
+      color:#60758d;
+      font-size:16px;
+      line-height:1.8;
+    }
+
+    .info-value strong{
+      color:#1f3145;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      padding-top:6px;
     }
 
     .whatsapp-btn{
@@ -393,14 +381,12 @@
       text-decoration:none;
       background:#25D366;
       color:#fff;
-      padding:14px 20px;
-      border-radius:14px;
-      font-weight:800;
-      margin-top:4px;
-      font-size:14px;
+      padding:16px 28px;
+      font-weight:900;
+      font-size:15px;
       transition:.2s ease;
       box-shadow:0 8px 16px rgba(37,211,102,.18);
-      width:max-content;
+      border:none;
     }
 
     .whatsapp-btn:hover{
@@ -408,111 +394,90 @@
       transform:translateY(-1px);
     }
 
-    .info-list{
-      display:grid;
-      gap:12px;
-      margin-top:4px;
-    }
-
-    .info-item{
-      padding:15px 16px;
-      border-radius:18px;
-      background:rgba(255,255,255,.72);
-      border:1px solid rgba(36,79,130,.08);
-      box-shadow:0 8px 18px rgba(0,0,0,.03);
-    }
-
-    .info-item strong{
-      display:block;
-      margin-bottom:4px;
-      color:#1f3145;
-      font-size:15px;
-    }
-
-    .info-item span{
-      color:#5b6f86;
-      line-height:1.65;
+    .ghost-note{
+      display:inline-flex;
+      align-items:center;
+      padding:16px 22px;
+      background:rgba(47,120,189,.06);
+      border:1px solid rgba(36,79,130,.10);
+      color:#5d738d;
       font-size:14px;
+      font-weight:700;
     }
 
-    .contact-visual-panel{
-      display:grid;
-      gap:20px;
-    }
-
-    .ambient-card{
-      background:rgba(255,255,255,.97);
+    .right-card{
       border:1px solid rgba(36,79,130,.08);
-      border-radius:24px;
-      box-shadow:var(--shadow-card);
-      overflow:hidden;
-      display:grid;
-      grid-template-rows:auto 1fr;
-      min-height:100%;
-    }
-
-    .ambient-image{
-      min-height:320px;
-      background:
-        linear-gradient(180deg, rgba(18,28,42,.12), rgba(18,28,42,.22)),
-        url("../imagenes/imagen-contacto.jpg") center/cover no-repeat;
-      position:relative;
-    }
-
-    .ambient-image::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,.12), transparent 24%),
-        radial-gradient(circle at bottom right, rgba(255,255,255,.08), transparent 24%);
-      pointer-events:none;
-    }
-
-    .ambient-copy{
-      padding:22px;
+      background:rgba(255,255,255,.70);
+      padding:24px 24px 22px;
       display:grid;
       gap:12px;
     }
 
-    .ambient-copy h3{
+    .right-card h3{
       font-size:28px;
-      color:#1d2d40;
-      line-height:1.1;
-    }
-
-    .ambient-copy p{
-      color:var(--muted-2);
-      line-height:1.7;
-      font-size:15px;
-    }
-
-    .mini-note{
-      position:relative;
-      z-index:1;
-      margin-top:28px;
-      background:linear-gradient(135deg, rgba(47,120,189,.10), rgba(36,79,130,.06));
-      border-radius:24px;
-      padding:24px;
-      box-shadow:var(--shadow-card);
-      border:1px solid rgba(36,79,130,.08);
-      text-align:center;
-    }
-
-    .mini-note h3{
-      font-size:30px;
-      margin-bottom:10px;
       line-height:1.08;
-      letter-spacing:-.4px;
       color:#1d2d40;
+      letter-spacing:-.5px;
     }
 
-    .mini-note p{
-      color:var(--muted-2);
+    .right-card p{
+      color:#667b93;
+      font-size:15px;
+      line-height:1.75;
+    }
+
+    .benefits-list{
+      display:grid;
+      gap:0;
+      border-top:1px solid rgba(36,79,130,.10);
+      border-bottom:1px solid rgba(36,79,130,.10);
+    }
+
+    .benefit-row{
+      display:grid;
+      grid-template-columns:190px 1fr;
+      gap:18px;
+      padding:18px 0;
+      border-bottom:1px solid rgba(36,79,130,.08);
+    }
+
+    .benefit-row:last-child{
+      border-bottom:none;
+    }
+
+    .benefit-title{
+      font-size:14px;
+      font-weight:900;
+      color:#203247;
+      text-transform:uppercase;
+      letter-spacing:.45px;
+    }
+
+    .benefit-text{
+      color:#60758d;
       font-size:15px;
       line-height:1.7;
-      max-width:760px;
-      margin:0 auto;
+    }
+
+    .right-cta{
+      border:1px solid rgba(36,79,130,.08);
+      background:linear-gradient(135deg, rgba(47,120,189,.08), rgba(36,79,130,.04));
+      padding:26px 24px;
+      display:grid;
+      gap:10px;
+    }
+
+    .right-cta h3{
+      font-size:32px;
+      line-height:1.05;
+      color:#1d2d40;
+      letter-spacing:-.7px;
+    }
+
+    .right-cta p{
+      color:#60758d;
+      font-size:15px;
+      line-height:1.75;
     }
 
     footer{
@@ -583,12 +548,13 @@
         font-size:46px;
       }
 
-      .contact-main-grid{
+      .contact-layout{
         grid-template-columns:1fr;
       }
 
-      .ambient-image{
-        min-height:280px;
+      .contact-left{
+        border-right:none;
+        border-bottom:1px solid rgba(36,79,130,.08);
       }
     }
 
@@ -638,7 +604,21 @@
         width:100%;
         margin-left:0;
         margin-right:0;
-        padding:24px;
+      }
+
+      .contact-left,
+      .contact-right{
+        padding:30px 24px;
+      }
+
+      .contact-title{
+        font-size:36px;
+      }
+
+      .info-row,
+      .benefit-row{
+        grid-template-columns:1fr;
+        gap:8px;
       }
 
       footer{
@@ -822,69 +802,46 @@
         line-height:1.55;
       }
 
-      .section-shell{
-        padding:20px 14px 24px;
-        border-left:none;
-        border-right:none;
+      .contact-left,
+      .contact-right{
+        padding:22px 14px;
       }
 
-      .contact-section-head{
-        margin-bottom:20px;
-      }
-
-      .contact-section-head h2{
+      .contact-title{
         font-size:30px;
       }
 
-      .contact-section-head p{
+      .contact-subtext,
+      .info-value,
+      .benefit-text,
+      .right-card p,
+      .right-cta p{
         font-size:14px;
       }
 
-      .contact-card-body,
-      .ambient-copy{
-        padding:18px;
+      .contact-title,
+      .right-card h3,
+      .right-cta h3{
+        line-height:1.08;
       }
 
-      .contact-card h3,
-      .ambient-copy h3,
-      .mini-note h3{
+      .right-card h3{
         font-size:24px;
       }
 
-      .contact-card p,
-      .ambient-copy p,
-      .mini-note p{
-        font-size:14px;
+      .right-cta h3{
+        font-size:28px;
       }
 
-      .highlight-box,
-      .info-item{
-        padding:14px;
-        border-radius:16px;
-      }
-
-      .highlight-box strong,
-      .info-item strong{
-        font-size:14px;
-      }
-
-      .highlight-box span,
-      .info-item span{
-        font-size:13px;
-      }
-
-      .ambient-image{
-        min-height:220px;
-      }
-
-      .whatsapp-btn{
+      .whatsapp-btn,
+      .ghost-note{
         width:100%;
+        text-align:center;
       }
 
-      .mini-note{
-        margin-top:22px;
-        padding:18px;
-        border-radius:20px;
+      .cta-row{
+        display:grid;
+        grid-template-columns:1fr;
       }
 
       .whatsapp-float{
@@ -943,9 +900,9 @@
 
     <nav class="mobile-drawer-nav">
       <a href="../index.html">INICIO</a>
-      <a href="catalogo/">CATÁLOGO</a>
-      <a href="preguntas/">PREGUNTAS FRECUENTES</a>
-      <a href="contacto/">CONTACTO</a>
+      <a href="../catalogo/">CATÁLOGO</a>
+      <a href="../preguntas/">PREGUNTAS FRECUENTES</a>
+      <a href="../contacto/">CONTACTO</a>
     </nav>
   </aside>
 
@@ -959,93 +916,74 @@
     </section>
 
     <section class="section-shell">
-      <div class="contact-section-head">
-        <h2>Estamos listos para ayudarte</h2>
-        <p>Te organizamos la información de contacto de una forma más clara, visual y cómoda para que pedir tus pines se sienta fácil desde cualquier dispositivo.</p>
-      </div>
+      <div class="contact-layout">
+        <div class="contact-left">
+          <div class="contact-block">
+            <div class="contact-line"></div>
+            <h2 class="contact-title">Escríbenos y te ayudamos con tu pedido</h2>
+            <p class="contact-subtext">Si ya viste pines que te gustaron en el catálogo, envíanos un mensaje con las referencias y te ayudamos con el pedido. Puedes preguntarnos por disponibilidad, cantidad mínima, entrega y recomendaciones según el estilo que buscas.</p>
+          </div>
 
-      <div class="contact-main-grid">
-        <div class="contact-info-panel">
-          <article class="contact-card">
-            <div class="contact-card-body">
-              <h3>Escríbenos</h3>
-              <p>Si ya viste pines que te gustaron en el catálogo, envíanos un mensaje con las referencias y te ayudamos con el pedido.</p>
-              <p>Puedes preguntarnos por disponibilidad, cantidad mínima, entrega y recomendaciones según el estilo que buscas.</p>
+          <div class="info-stack">
+            <div class="info-row">
+              <div class="info-label">Pedido fácil</div>
+              <div class="info-value">Solo envíanos las referencias de los pines que te gusten y te ayudamos a organizar todo.</div>
+            </div>
 
-              <div class="contact-highlight">
-                <div class="highlight-box">
-                  <strong>Pedido fácil</strong>
-                  <span>Solo envíanos las referencias de los pines que te gusten y te ayudamos a organizar todo.</span>
-                </div>
+            <div class="info-row">
+              <div class="info-label">Atención directa</div>
+              <div class="info-value">La respuesta es personalizada para resolver dudas y confirmar tu compra rápidamente.</div>
+            </div>
 
-                <div class="highlight-box">
-                  <strong>Atención directa</strong>
-                  <span>La respuesta es personalizada para resolver dudas y confirmar tu compra rápidamente.</span>
-                </div>
+            <div class="info-row">
+              <div class="info-label">Compra con confianza</div>
+              <div class="info-value">Tus pines llegan listos para entregar o regalar, con una presentación cuidada y bonita.</div>
+            </div>
+          </div>
 
-                <div class="highlight-box">
-                  <strong>Compra con confianza</strong>
-                  <span>Tus pines llegan listos para entregar o regalar, con una presentación cuidada y bonita.</span>
-                </div>
+          <div class="cta-row">
+            <a class="whatsapp-btn" href="https://wa.me/573116821619?text=Hola,%20quiero%20hacer%20un%20pedido%20en%20Pin%20Lab%20Co." target="_blank">
+              Ir a WhatsApp
+            </a>
+
+            <div class="ghost-note">Respuesta rápida por WhatsApp</div>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <article class="right-card">
+            <h3>Información útil</h3>
+            <p>Todo lo importante para que el cliente entienda fácilmente cómo funciona el proceso de compra, sin mostrar datos innecesarios en pantalla.</p>
+
+            <div class="benefits-list">
+              <div class="benefit-row">
+                <div class="benefit-title">Pedidos</div>
+                <div class="benefit-text">Compras a partir de 3 unidades. Pueden ser surtidas.</div>
               </div>
 
-              <a class="whatsapp-btn" href="https://wa.me/573116821619?text=Hola,%20quiero%20hacer%20un%20pedido%20en%20Pin%20Lab%20Co." target="_blank">
-                Ir a WhatsApp
-              </a>
-            </div>
-          </article>
+              <div class="benefit-row">
+                <div class="benefit-title">Empaque</div>
+                <div class="benefit-text">Cada pin incluye su bolsita de empaque para una presentación más bonita y cuidada.</div>
+              </div>
 
-          <article class="contact-card">
-            <div class="contact-card-body">
-              <h3>Información útil</h3>
+              <div class="benefit-row">
+                <div class="benefit-title">Entregas</div>
+                <div class="benefit-text">Consulta por condiciones especiales de entrega y opciones disponibles según tu pedido.</div>
+              </div>
 
-              <div class="info-list">
-                <div class="info-item">
-                  <strong>WhatsApp</strong>
-                  <span>+57 311 682 1619</span>
-                </div>
-
-                <div class="info-item">
-                  <strong>Pedidos</strong>
-                  <span>Compras a partir de 3 unidades. Pueden ser surtidas.</span>
-                </div>
-
-                <div class="info-item">
-                  <strong>Empaque</strong>
-                  <span>Cada pin incluye su bolsita de empaque para una presentación más bonita y cuidada.</span>
-                </div>
-
-                <div class="info-item">
-                  <strong>Entregas</strong>
-                  <span>Consulta por condiciones especiales de entrega y opciones disponibles según tu pedido.</span>
-                </div>
-
-                <div class="info-item">
-                  <strong>Atención</strong>
-                  <span>Respuesta rápida para ayudarte con disponibilidad, referencias y proceso de compra.</span>
-                </div>
+              <div class="benefit-row">
+                <div class="benefit-title">Atención</div>
+                <div class="benefit-text">Respuesta rápida para ayudarte con disponibilidad, referencias y proceso de compra.</div>
               </div>
             </div>
           </article>
-        </div>
 
-        <div class="contact-visual-panel">
-          <article class="ambient-card">
-            <div class="ambient-image"></div>
-            <div class="ambient-copy">
-              <h3>Un espacio pensado para que comprar sea más cómodo</h3>
-              <p>Aquí puedes poner una imagen que acompañe la experiencia de la página y haga que la sección de contacto se vea más cálida, bonita y profesional.</p>
-              <p>Guarda tu imagen con este nombre exacto para que aparezca aquí:</p>
-              <p><strong>../imagenes/imagen-contacto.jpg</strong></p>
-            </div>
+          <article class="right-cta">
+            <h3>¿Ya elegiste tus favoritos?</h3>
+            <p>Ve al catálogo, anota las referencias que más te gusten y escríbenos por WhatsApp para ayudarte con tu pedido de forma rápida, clara y segura.</p>
           </article>
         </div>
       </div>
-
-      <section class="mini-note">
-        <h3>¿Ya elegiste tus favoritos?</h3>
-        <p>Ve al catálogo, anota las referencias que más te gusten y escríbenos por WhatsApp para ayudarte con tu pedido de forma rápida, clara y segura.</p>
-      </section>
     </section>
 
     <footer>
