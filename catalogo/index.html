@@ -307,6 +307,33 @@
       content:none;
     }
 
+    .catalog-trust{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:4px;
+      color:#60758d;
+      font-size:13px;
+      font-weight:750;
+      text-align:center;
+    }
+
+    .catalog-trust span{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .catalog-trust span + span::before{
+      content:"";
+      width:4px;
+      height:4px;
+      border-radius:50%;
+      background:rgba(47,120,189,.40);
+    }
+
     .promo-content{
       display:flex;
       align-items:center;
@@ -511,6 +538,45 @@
       backdrop-filter: blur(6px);
     }
 
+    .active-filter-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:-4px 0 16px;
+      position:relative;
+      z-index:1;
+    }
+
+    .active-filter-row.hidden{
+      display:none;
+    }
+
+    .active-filter-label{
+      color:#60758d;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .active-filter-chip{
+      border:1px solid rgba(47,120,189,.18);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.98), rgba(234,243,255,.90));
+      color:var(--azul-oscuro);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 6px 14px rgba(36,79,130,.06);
+      transition:transform .2s ease, border-color .2s ease;
+    }
+
+    .active-filter-chip:hover{
+      transform:translateY(-1px);
+      border-color:rgba(47,120,189,.30);
+    }
+
     .toolbar{
       display:grid;
       grid-template-columns:minmax(240px, 360px) 200px 180px;
@@ -633,10 +699,10 @@
     }
 
     .product-body{
-      padding:18px;
+      padding:16px;
       display:flex;
       flex-direction:column;
-      gap:8px;
+      gap:7px;
       flex-grow:1;
     }
 
@@ -649,7 +715,7 @@
       -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
       overflow:hidden;
-      min-height:44px;
+      min-height:42px;
     }
 
     .product-ref{
@@ -657,29 +723,66 @@
       font-size:13px;
     }
 
-    .product-price{
-      font-size:24px;
-      font-weight:800;
-      color:#1e2a36;
-      line-height:1;
-    }
-
     .product-desc{
       color:var(--muted-2);
       font-size:14px;
-      line-height:1.55;
+      line-height:1.5;
       display:-webkit-box;
-      -webkit-line-clamp:3;
+      -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
       overflow:hidden;
-      min-height:62px;
+      min-height:42px;
     }
 
     .product-actions{
       margin-top:auto;
       display:grid;
       gap:8px;
-      padding-top:6px;
+      padding-top:4px;
+    }
+
+    .empty-state{
+      grid-column:1 / -1;
+      min-height:260px;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(36,79,130,.10);
+      border-radius:22px;
+      box-shadow:var(--shadow-card);
+      padding:34px 20px;
+    }
+
+    .empty-state-inner{
+      max-width:460px;
+      display:grid;
+      gap:10px;
+      justify-items:center;
+    }
+
+    .empty-state h3{
+      font-size:24px;
+      color:#1d2d40;
+      line-height:1.1;
+    }
+
+    .empty-state p{
+      color:#60758d;
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    .empty-state button{
+      margin-top:4px;
+      border:1px solid rgba(47,120,189,.18);
+      border-radius:999px;
+      padding:11px 15px;
+      background:linear-gradient(135deg, rgba(255,255,255,.98), rgba(234,243,255,.92));
+      color:var(--azul-oscuro);
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 8px 16px rgba(36,79,130,.07);
     }
 
     .btn-product{
@@ -901,6 +1004,10 @@
         padding:16px 24px 18px;
       }
 
+      .catalog-trust{
+        font-size:12px;
+      }
+
       .promo-item strong{
         font-size:22px;
       }
@@ -1108,6 +1215,16 @@
         gap:10px;
       }
 
+      .catalog-trust{
+        gap:6px 8px;
+        font-size:11px;
+        line-height:1.35;
+      }
+
+      .catalog-trust span + span::before{
+        display:none;
+      }
+
       .promo-content{
         justify-content:center;
       }
@@ -1205,13 +1322,9 @@
         font-size:12px;
       }
 
-      .product-price{
-        font-size:20px;
-      }
-
       .product-desc{
         font-size:12px;
-        min-height:52px;
+        min-height:36px;
       }
 
       .btn-product{
@@ -1322,6 +1435,10 @@
             <small>La opci&oacute;n favorita</small>
           </div>
         </div>
+
+        <div class="catalog-trust" aria-label="Informaci&oacute;n de compra">
+          <span>Incluye bolsita de empaque</span>
+        </div>
       </div>
     </section>
 
@@ -1368,9 +1485,15 @@
             <select id="sortSelectPanel">
               <option value="default">Ordenar por</option>
               <option value="name">Nombre A-Z</option>
+              <option value="available">Disponibles primero</option>
             </select>
           </div>
         </div>
+      </div>
+
+      <div class="active-filter-row hidden" id="activeFilterRow">
+        <span class="active-filter-label">Filtro activo</span>
+        <button type="button" class="active-filter-chip" id="activeFilterChip"></button>
       </div>
 
       <section class="products-grid" id="productGrid"></section>
@@ -1407,6 +1530,8 @@
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     const filterTrigger = document.getElementById('filterTrigger');
     const filterPanelWrap = document.getElementById('filterPanelWrap');
+    const activeFilterRow = document.getElementById('activeFilterRow');
+    const activeFilterChip = document.getElementById('activeFilterChip');
 
     const whatsappNumber = '573116821619';
 
@@ -1496,7 +1621,7 @@
   { id: 67, foto: '../imagenes/pin67.jpeg', nombre: 'Pin Perrito en Caja', referencia: '067', precio: 8000, descripcion: 'Perrito asomado desde una caja, tierno y muy llamativo.', estado: 'disponible', categorias: 'perros' },
   { id: 68, foto: '../imagenes/pin68.jpeg', nombre: 'Pin Gato Rana', referencia: '068', precio: 8000, descripcion: 'Gatito con capucha de rana, divertido y perfecto para fans de los michis.', estado: 'disponible', categorias: 'gatos' },
 
-  { id: 69, foto: '../imagenes/pin69.jpeg', nombre: 'Pin ChatGPT Meme', referencia: '069', precio: 8000, descripcion: 'Frase divertida con referencia a ChatGPT, ideal para amantes de la tecnología.', estado: 'disponible', categorias: 'videojuegos' },
+  { id: 69, foto: '../imagenes/pin69.jpeg', nombre: 'Pin ChatGPT Meme', referencia: '069', precio: 8000, descripcion: 'Frase divertida con referencia a ChatGPT, ideal para amantes de la tecnología.', estado: 'disponible', categorias: 'frases' },
   { id: 70, foto: '../imagenes/pin70.jpeg', nombre: 'Pin Snoopy Woodstock', referencia: '070', precio: 8000, descripcion: 'Snoopy abrazando a Woodstock en un diseño tierno y clásico.', estado: 'disponible', categorias: 'caricaturas' },
   { id: 71, foto: '../imagenes/pin71.jpeg', nombre: 'Pin Harry Potter Escoba', referencia: '071', precio: 8000, descripcion: 'Harry Potter con escoba en una versión colorida y coleccionable.', estado: 'disponible', categorias: 'caricaturas' },
   { id: 72, foto: '../imagenes/pin72.jpeg', nombre: 'Pin Perry el Ornitorrinco de Phineas y Ferb', referencia: '072', precio: 8000, descripcion: 'Perry con su estilo de agente secreto, divertido y reconocible.', estado: 'disponible', categorias: 'caricaturas' },
@@ -1515,10 +1640,6 @@
     const LOAD_MORE_STEP = 8;
     let visibleCount = INITIAL_VISIBLE;
     let filteredProducts = [...productos];
-
-    function formatoCOP(valor) {
-      return '$' + valor.toLocaleString('es-CO') + ' COP';
-    }
 
     function crearImagen(producto) {
       return `
@@ -1553,7 +1674,6 @@
           <div class="product-body">
             <h4 class="product-title">${producto.nombre}</h4>
             <p class="product-ref">Ref: ${producto.referencia}</p>
-            <div class="product-price">${formatoCOP(producto.precio)}</div>
             <p class="product-desc">${producto.descripcion}</p>
 
             <div class="product-actions">
@@ -1581,9 +1701,23 @@
     function renderProductos(lista) {
       filteredProducts = lista;
       const visibles = filteredProducts.slice(0, visibleCount);
-      productGrid.innerHTML = visibles.map(crearTarjeta).join('');
+      productGrid.innerHTML = visibles.length ? visibles.map(crearTarjeta).join('') : `
+        <div class="empty-state">
+          <div class="empty-state-inner">
+            <h3>No encontramos pines con ese filtro</h3>
+            <p>Prueba otra b&uacute;squeda o limpia la categor&iacute;a para volver a ver el cat&aacute;logo completo.</p>
+            <button type="button" id="clearEmptyStateBtn">Ver todos los pines</button>
+          </div>
+        </div>
+      `;
       productCount.textContent = filteredProducts.length;
       actualizarBotonVerMas();
+      actualizarFiltroActivo();
+
+      const clearEmptyStateBtn = document.getElementById('clearEmptyStateBtn');
+      if (clearEmptyStateBtn) {
+        clearEmptyStateBtn.addEventListener('click', limpiarTodosLosFiltros);
+      }
     }
 
     function aplicarFiltros(resetVisible = true) {
@@ -1602,6 +1736,13 @@
         filtrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
       }
 
+      if (orden === 'available') {
+        filtrados.sort((a, b) => {
+          if (a.estado === b.estado) return a.id - b.id;
+          return a.estado === 'disponible' ? -1 : 1;
+        });
+      }
+
       if (resetVisible) {
         visibleCount = INITIAL_VISIBLE;
       }
@@ -1613,6 +1754,32 @@
       if (!filterPanelWrap || !filterTrigger) return;
       filterPanelWrap.classList.toggle('hidden', !show);
       filterTrigger.setAttribute('aria-expanded', show ? 'true' : 'false');
+    }
+
+    function actualizarFiltroActivo() {
+      if (!activeFilterRow || !activeFilterChip) return;
+      const categoria = categorySelectPanel.value;
+      const categoriaTexto = categorySelectPanel.options[categorySelectPanel.selectedIndex]?.text || '';
+      activeFilterRow.classList.toggle('hidden', !categoria);
+      activeFilterChip.textContent = categoria ? `${categoriaTexto} x` : '';
+    }
+
+    function limpiarCategoriaActiva() {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('categoria');
+      window.history.replaceState({}, '', url);
+      categorySelectPanel.value = '';
+      aplicarFiltros(true);
+    }
+
+    function limpiarTodosLosFiltros() {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('categoria');
+      window.history.replaceState({}, '', url);
+      searchInputPanel.value = '';
+      categorySelectPanel.value = '';
+      sortSelectPanel.value = 'default';
+      aplicarFiltros(true);
     }
 
     loadMoreBtn.addEventListener('click', () => {
@@ -1634,6 +1801,8 @@
       window.history.replaceState({}, '', url);
       aplicarFiltros(true);
     });
+
+    activeFilterChip.addEventListener('click', limpiarCategoriaActiva);
 
     sortSelectPanel.addEventListener('change', () => {
       aplicarFiltros(true);
