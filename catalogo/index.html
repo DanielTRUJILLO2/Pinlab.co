@@ -387,7 +387,7 @@
 
     .toolbar{
       display:grid;
-      grid-template-columns:minmax(280px, 420px) 220px;
+      grid-template-columns:minmax(240px, 360px) 200px 180px;
       gap:12px;
       align-items:center;
       justify-content:flex-start;
@@ -442,9 +442,7 @@
     .image-area{
       position:relative;
       aspect-ratio:1/1;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.82), rgba(239,235,228,.98)),
-        url("../imagenes/textura.jpg") center/cover no-repeat;
+      background:linear-gradient(135deg, rgba(255,255,255,.82), rgba(239,235,228,.98));
       overflow:hidden;
     }
 
@@ -712,7 +710,7 @@
       }
 
       .toolbar{
-        grid-template-columns:minmax(220px, 300px) 200px;
+        grid-template-columns:minmax(220px, 300px) 190px 170px;
       }
     }
 
@@ -771,7 +769,7 @@
       }
 
       .toolbar{
-        grid-template-columns:1fr 200px;
+        grid-template-columns:1fr 190px;
       }
 
       footer{
@@ -1138,6 +1136,18 @@
         <div class="filter-panel">
           <div class="toolbar">
             <input type="text" id="searchInputPanel" placeholder="Buscar pin..." />
+            <select id="categorySelectPanel">
+              <option value="">Todas las categorias</option>
+              <option value="gatos">Gatos</option>
+              <option value="medicina">Medicina</option>
+              <option value="marvel">Marvel</option>
+              <option value="animales">Animales</option>
+              <option value="perros">Perros</option>
+              <option value="anime">Anime</option>
+              <option value="caricaturas">Caricaturas</option>
+              <option value="videojuegos">Videojuegos</option>
+              <option value="frases">Frases</option>
+            </select>
             <select id="sortSelectPanel">
               <option value="default">Ordenar por</option>
               <option value="name">Nombre A-Z</option>
@@ -1173,6 +1183,7 @@
 
   <script>
     const searchInputPanel = document.getElementById('searchInputPanel');
+    const categorySelectPanel = document.getElementById('categorySelectPanel');
     const sortSelectPanel = document.getElementById('sortSelectPanel');
     const productGrid = document.getElementById('productGrid');
     const productCount = document.getElementById('productCount');
@@ -1252,7 +1263,7 @@
   { id: 53, foto: '../imagenes/pin53.jpeg', nombre: 'Pin Conejo Gym', referencia: '053', precio: 8000, descripcion: 'Conejito levantando pesas con actitud fuerte y divertida.', estado: 'disponible', categorias: 'animales' },
   { id: 54, foto: '../imagenes/pin54.jpeg', nombre: 'Pin Capibara con Ranita', referencia: '054', precio: 8000, descripcion: 'Capibara acompañada de una ranita, tranquila y adorable.', estado: 'disponible', categorias: 'animales' },
   { id: 55, foto: '../imagenes/pin55.jpeg', nombre: 'Pin Jorge el Curioso Banana', referencia: '055', precio: 8000, descripcion: 'Jorge el Curioso con banana en una versión alegre y colorida.', estado: 'disponible', categorias: 'caricaturas' },
-  { id: 80, foto: '../imagenes/pin80.jpeg', nombre: 'Pin Paciencia 1%', referencia: '080', precio: 8000, descripcion: 'Diseño tipo batería baja, perfecto para quienes aman el humor directo.', estado: 'disponible', categorias: 'frases' },
+  { id: 56, foto: '../imagenes/pin56.jpeg', nombre: 'Pin Paciencia 1%', referencia: '056', precio: 8000, descripcion: 'Diseño tipo batería baja, perfecto para quienes aman el humor directo.', estado: 'disponible', categorias: 'frases' },
   { id: 57, foto: '../imagenes/pin57.jpeg', nombre: 'Pin Snoopy Guitarrista', referencia: '057', precio: 8000, descripcion: 'Snoopy tocando guitarra con un estilo musical y relajado.', estado: 'disponible', categorias: 'caricaturas' },
   { id: 58, foto: '../imagenes/pin58.jpeg', nombre: 'Pin Hipo Tenusa', referencia: '058', precio: 8000, descripcion: 'Diseño médico ilustrado, original y perfecto para temática de salud.', estado: 'disponible', categorias: 'medicina' },
   { id: 59, foto: '../imagenes/pin59.jpeg', nombre: 'Pin Chill Guy', referencia: '059', precio: 8000, descripcion: 'Chill Guy con outfit casual, ideal para un estilo relajado.', estado: 'disponible', categorias: 'caricaturas' },
@@ -1360,11 +1371,15 @@
 
     function aplicarFiltros(resetVisible = true) {
       const termino = searchInputPanel.value.toLowerCase().trim();
+      const categoriaActiva = categorySelectPanel.value;
       const orden = sortSelectPanel.value;
 
-      let filtrados = productos.filter(p =>
-        `${p.nombre} ${p.referencia}`.toLowerCase().includes(termino)
-      );
+      let filtrados = productos.filter(p => {
+        const coincideTexto = `${p.nombre} ${p.referencia}`.toLowerCase().includes(termino);
+        const categorias = String(p.categorias || '').split(',').map(c => c.trim());
+        const coincideCategoria = !categoriaActiva || categorias.includes(categoriaActiva);
+        return coincideTexto && coincideCategoria;
+      });
 
       if (orden === 'name') {
         filtrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
@@ -1392,6 +1407,17 @@
       aplicarFiltros(true);
     });
 
+    categorySelectPanel.addEventListener('change', () => {
+      const url = new URL(window.location.href);
+      if (categorySelectPanel.value) {
+        url.searchParams.set('categoria', categorySelectPanel.value);
+      } else {
+        url.searchParams.delete('categoria');
+      }
+      window.history.replaceState({}, '', url);
+      aplicarFiltros(true);
+    });
+
     sortSelectPanel.addEventListener('change', () => {
       aplicarFiltros(true);
     });
@@ -1407,7 +1433,15 @@
       aplicarFiltros(false);
     });
 
-    setFilterPanelState(false);
+    const categoriaInicial = new URLSearchParams(window.location.search).get('categoria');
+    const categoriaInicialValida = [...categorySelectPanel.options].some(option => option.value === categoriaInicial);
+    if (categoriaInicialValida) {
+      categorySelectPanel.value = categoriaInicial;
+      setFilterPanelState(true);
+    } else {
+      setFilterPanelState(false);
+    }
+
     aplicarFiltros(true);
 
     const mobileLinks = document.querySelectorAll('.mobile-drawer-nav a');
