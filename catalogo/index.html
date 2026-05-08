@@ -269,6 +269,134 @@
       text-shadow:0 4px 14px rgba(0,0,0,.14);
     }
 
+    .promo-strip{
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      padding:0;
+      background:rgba(255,255,255,.84);
+      box-shadow:var(--shadow-soft);
+      border:1px solid rgba(36,79,130,.08);
+      border-bottom:none;
+      backdrop-filter: blur(8px);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .promo-card{
+      width:100%;
+      margin:0 auto;
+      display:grid;
+      gap:12px;
+      align-items:center;
+      color:#203247;
+      background:transparent;
+      border:none;
+      border-radius:0;
+      padding:16px 42px 18px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:none;
+      isolation:isolate;
+    }
+
+    .promo-card::before{
+      content:none;
+    }
+
+    .promo-content{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .promo-title{
+      display:grid;
+      gap:7px;
+      justify-items:center;
+      color:#1d2d40;
+      font-size:20px;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:.2px;
+      text-transform:uppercase;
+    }
+
+    .promo-title::after{
+      content:"";
+      width:54px;
+      height:3px;
+      border-radius:999px;
+      background:linear-gradient(135deg, var(--verde), var(--azul));
+    }
+
+    .promo-text{
+      display:none;
+    }
+
+    .promo-prices{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:12px;
+      width:100%;
+    }
+
+    .promo-item{
+      min-width:0;
+      display:grid;
+      align-items:center;
+      justify-items:center;
+      gap:4px;
+      text-align:center;
+      background:#fff;
+      border:1px solid rgba(36,79,130,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      box-shadow:0 5px 12px rgba(24,39,75,.05);
+      transition:transform .22s ease, background .22s ease, border-color .22s ease;
+    }
+
+    .promo-item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(47,120,189,.20);
+    }
+
+    .promo-number{
+      font-size:13px;
+      font-weight:900;
+      color:#60758d;
+      text-transform:uppercase;
+    }
+
+    .promo-item strong{
+      display:block;
+      font-size:24px;
+      line-height:1;
+      color:#203247;
+    }
+
+    .promo-item small{
+      display:none;
+      font-size:10px;
+      color:#718096;
+      min-height:12px;
+    }
+
+    .promo-item.featured{
+      border-color:rgba(47,120,189,.22);
+      background:rgba(234,243,255,.82);
+    }
+
+    .promo-item.best{
+      background:rgba(31,122,90,.10);
+      border-color:rgba(31,122,90,.22);
+    }
+
+    .promo-strip + .section-shell{
+      border-top:none;
+      box-shadow:none;
+    }
+
     .section-shell{
       background:rgba(255,255,255,.84);
       box-shadow:var(--shadow-soft);
@@ -756,6 +884,20 @@
         font-size:40px;
       }
 
+      .promo-strip{
+        width:100%;
+        margin-left:0;
+        margin-right:0;
+      }
+
+      .promo-card{
+        padding:16px 24px 18px;
+      }
+
+      .promo-item strong{
+        font-size:22px;
+      }
+
       .section-shell{
         width:100%;
         margin-left:0;
@@ -953,6 +1095,46 @@
         line-height:1.55;
       }
 
+      .promo-card{
+        border-radius:0;
+        padding:14px 12px 16px;
+        gap:10px;
+      }
+
+      .promo-content{
+        justify-content:center;
+      }
+
+      .promo-title{
+        font-size:17px;
+      }
+
+      .promo-text{
+        display:none;
+      }
+
+      .promo-prices{
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+        gap:7px;
+      }
+
+      .promo-item{
+        min-width:0;
+        justify-content:center;
+        border-radius:13px;
+        padding:9px 6px;
+        gap:3px;
+      }
+
+      .promo-item strong{
+        font-size:17px;
+      }
+
+      .promo-number{
+        font-size:10px;
+      }
+
       .section-shell{
         padding:20px 14px 24px;
         border-left:none;
@@ -1105,6 +1287,34 @@
         <span class="catalog-pill">Colección completa</span>
         <h1>CATÁLOGO DE PINES</h1>
         <p>Explora nuestras referencias y haz tu pedido directo por WhatsApp de forma rápida, clara y fácil.</p>
+      </div>
+    </section>
+
+    <section class="promo-strip" aria-label="Promociones">
+      <div class="promo-card">
+        <div class="promo-content">
+          <h2 class="promo-title">Promociones</h2>
+        </div>
+
+        <div class="promo-prices">
+          <div class="promo-item">
+            <span class="promo-number">1 Pin</span>
+            <strong>$8.000</strong>
+            <small>Precio individual</small>
+          </div>
+
+          <div class="promo-item featured">
+            <span class="promo-number">2 Pines</span>
+            <strong>$14.000</strong>
+            <small>Ahorra $2.000</small>
+          </div>
+
+          <div class="promo-item best">
+            <span class="promo-number">3 Pines</span>
+            <strong>$20.000</strong>
+            <small>La opci&oacute;n favorita</small>
+          </div>
+        </div>
       </div>
     </section>
 
