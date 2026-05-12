@@ -526,6 +526,25 @@
         0 8px 18px rgba(0,0,0,.14);
     }
 
+    .soft-reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .65s ease, transform .65s cubic-bezier(.2,.72,.22,1);
+    }
+
+    .soft-reveal.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .soft-reveal{
+        opacity:1;
+        transform:none;
+        transition:none;
+      }
+    }
+
     .whatsapp-icon{
       width:100%;
       height:100%;
@@ -1005,5 +1024,30 @@
       </svg>
     </span>
   </a>
+  <script>
+    function activarRevealSuave() {
+      const revealItems = document.querySelectorAll('.contact-hero, .contact-left, .contact-right');
+
+      if (!('IntersectionObserver' in window)) {
+        revealItems.forEach(item => item.classList.add('is-visible'));
+        return;
+      }
+
+      revealItems.forEach(item => item.classList.add('soft-reveal'));
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .14, rootMargin: '0px 0px -40px 0px' });
+
+      revealItems.forEach(item => observer.observe(item));
+    }
+
+    activarRevealSuave();
+  </script>
 </body>
 </html>

@@ -613,6 +613,7 @@
       gap:24px;
       position:relative;
       z-index:1;
+      perspective:1200px;
     }
 
     .product-card{
@@ -622,22 +623,76 @@
       box-shadow:var(--shadow-card);
       display:flex;
       flex-direction:column;
-      transition:.25s ease;
+      transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
       min-height:100%;
       border:1px solid rgba(36,79,130,.08);
       backdrop-filter: blur(6px);
+      will-change:transform;
+      position:relative;
+      isolation:isolate;
+      transform-origin:center bottom;
+    }
+
+    .product-card.product-card-enter{
+      animation:productCardIn .74s cubic-bezier(.2,.72,.18,1) both;
+    }
+
+    .product-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.55), transparent 38%),
+        radial-gradient(circle at 50% -12%, rgba(47,120,189,.12), transparent 42%);
+      opacity:0;
+      transition:opacity .32s ease;
+    }
+
+    .product-card::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      z-index:0;
+      pointer-events:none;
+      border-radius:24px;
+      background:linear-gradient(135deg, rgba(47,120,189,.20), rgba(31,122,90,.16), rgba(255,255,255,0));
+      opacity:0;
+      transition:opacity .32s ease;
     }
 
     .product-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 18px 32px rgba(24,39,75,.10);
+      transform:translateY(-8px) scale(1.006);
+      box-shadow:0 22px 42px rgba(24,39,75,.14);
+      border-color:rgba(47,120,189,.22);
+    }
+
+    .product-card:hover::before,
+    .product-card:hover::after{
+      opacity:1;
     }
 
     .image-area{
       position:relative;
       aspect-ratio:1/1;
-      background:linear-gradient(135deg, rgba(255,255,255,.82), rgba(239,235,228,.98));
+      background:
+        linear-gradient(110deg, transparent 28%, rgba(255,255,255,.7) 43%, transparent 58%),
+        linear-gradient(135deg, rgba(255,255,255,.82), rgba(239,235,228,.98));
+      background-size:230% 100%, 100% 100%;
       overflow:hidden;
+      animation:imageGlow 1.35s ease-in-out infinite;
+      z-index:2;
+    }
+
+    .image-area::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(180deg, transparent 58%, rgba(20,35,60,.08));
+      opacity:.72;
+      z-index:1;
     }
 
     .tag{
@@ -649,8 +704,11 @@
       border-radius:999px;
       font-size:11px;
       font-weight:800;
-      z-index:2;
+      z-index:3;
       box-shadow:0 6px 12px rgba(0,0,0,.12);
+      backdrop-filter:blur(8px);
+      transform:translateY(0);
+      transition:transform .25s ease, box-shadow .25s ease;
     }
 
     .tag.disponible{
@@ -667,11 +725,31 @@
       object-fit:cover;
       display:block;
       background:#eee;
-      transition:transform .25s ease;
+      opacity:0;
+      transform:scale(1.045);
+      transition:opacity .5s ease, transform .7s cubic-bezier(.2,.72,.22,1);
+      position:relative;
+      z-index:0;
     }
 
-    .product-card:hover .image-area img{
-      transform:scale(1.02);
+    .image-area img.is-loaded{
+      opacity:1;
+      transform:scale(1);
+    }
+
+    .image-area.is-loaded{
+      animation:none;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.82), rgba(239,235,228,.98));
+    }
+
+    .product-card:hover .image-area img.is-loaded{
+      transform:scale(1.055);
+    }
+
+    .product-card:hover .tag{
+      transform:translateY(-2px);
+      box-shadow:0 9px 16px rgba(0,0,0,.16);
     }
 
     .image-placeholder{
@@ -706,6 +784,8 @@
       flex-direction:column;
       gap:7px;
       flex-grow:1;
+      position:relative;
+      z-index:2;
     }
 
     .product-title{
@@ -795,18 +875,27 @@
       border-radius:14px;
       font-weight:800;
       font-size:14px;
-      transition:.2s ease;
+      transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
+      position:relative;
+      overflow:hidden;
     }
 
     .btn-whatsapp{
-      background:#25D366;
+      background:linear-gradient(135deg, #26d86a, #18b958);
       color:#fff;
       box-shadow:0 8px 16px rgba(37,211,102,.18);
     }
 
     .btn-whatsapp:hover{
-      background:#1eb95a;
-      transform:translateY(-1px);
+      background:linear-gradient(135deg, #2be071, #17ae53);
+      transform:translateY(-2px);
+      box-shadow:0 12px 22px rgba(37,211,102,.24);
+    }
+
+    .btn-product:focus-visible,
+    .load-more-btn:focus-visible{
+      outline:3px solid rgba(47,120,189,.24);
+      outline-offset:4px;
     }
 
     .btn-whatsapp.disabled{
@@ -819,61 +908,204 @@
     .load-more-wrap{
       display:flex;
       justify-content:center;
-      margin-top:30px;
+      margin-top:34px;
       position:relative;
       z-index:1;
     }
 
     .load-more-btn{
-      border:1px solid rgba(47,120,189,.18);
+      border:1px solid rgba(47,120,189,.24);
       background:
-        linear-gradient(135deg, rgba(255,255,255,.98), rgba(234,243,255,.92));
+        radial-gradient(circle at 18% 20%, rgba(255,255,255,.88), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.98), rgba(231,243,255,.95) 52%, rgba(235,249,242,.92));
       color:var(--azul-oscuro);
-      padding:14px 26px;
+      min-width:min(100%, 290px);
+      min-height:58px;
+      padding:12px 20px 12px 18px;
       border-radius:999px;
       font-size:15px;
       font-weight:900;
       cursor:pointer;
       box-shadow:
-        0 10px 22px rgba(36,79,130,.08),
+        0 16px 34px rgba(36,79,130,.12),
         inset 0 1px 0 rgba(255,255,255,.90);
-      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+      transition:transform .24s ease, box-shadow .24s ease, border-color .24s ease, background .24s ease;
       letter-spacing:.2px;
       position:relative;
       overflow:hidden;
+      display:inline-grid;
+      grid-template-columns:38px 1fr auto;
+      align-items:center;
+      gap:12px;
+    }
+
+    .load-more-btn::before{
+      content:"";
+      position:absolute;
+      inset:-80% -34%;
+      background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.68) 49%, transparent 62%);
+      transform:translateX(-42%) rotate(8deg);
+      opacity:.75;
+      transition:transform .65s cubic-bezier(.2,.72,.22,1);
     }
 
     .load-more-btn::after{
       content:"";
       position:absolute;
-      left:50%;
-      bottom:7px;
-      width:42px;
+      left:58px;
+      right:18px;
+      bottom:9px;
+      height:3px;
+      border-radius:999px;
+      background:rgba(47,120,189,.10);
+    }
+
+    .load-more-icon{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, var(--verde), var(--azul));
+      color:#fff;
+      box-shadow:0 8px 18px rgba(47,120,189,.22);
+      position:relative;
+      z-index:1;
+      transition:transform .24s ease;
+    }
+
+    .load-more-icon svg{
+      width:19px;
+      height:19px;
+      display:block;
+      stroke:currentColor;
+      stroke-width:2.4;
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .load-more-text{
+      display:grid;
+      gap:2px;
+      text-align:left;
+      position:relative;
+      z-index:1;
+      line-height:1.12;
+    }
+
+    .load-more-label{
+      font-size:15px;
+    }
+
+    .load-more-count{
+      color:#60758d;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .load-more-progress{
+      position:absolute;
+      left:58px;
+      bottom:9px;
+      width:var(--load-progress, 0%);
+      max-width:calc(100% - 76px);
       height:3px;
       border-radius:999px;
       background:linear-gradient(135deg, var(--verde), var(--azul));
-      transform:translateX(-50%);
-      opacity:.72;
-      transition:width .22s ease, opacity .22s ease;
+      z-index:1;
+      transition:width .35s ease;
     }
 
     .load-more-btn:hover{
-      transform:translateY(-2px);
-      border-color:rgba(47,120,189,.30);
+      transform:translateY(-3px);
+      border-color:rgba(47,120,189,.34);
       background:
-        linear-gradient(135deg, #fff, rgba(234,243,255,.98));
+        radial-gradient(circle at 18% 20%, rgba(255,255,255,.95), transparent 32%),
+        linear-gradient(135deg, #fff, rgba(231,243,255,.99) 52%, rgba(235,249,242,.98));
       box-shadow:
-        0 14px 26px rgba(36,79,130,.12),
+        0 20px 38px rgba(36,79,130,.17),
         inset 0 1px 0 rgba(255,255,255,.95);
     }
 
-    .load-more-btn:hover::after{
-      width:58px;
-      opacity:.9;
+    .load-more-btn:hover::before{
+      transform:translateX(42%) rotate(8deg);
+    }
+
+    .load-more-btn:hover .load-more-icon{
+      transform:translateY(-1px) rotate(90deg);
+    }
+
+    .load-more-btn:active{
+      transform:translateY(-1px) scale(.99);
+    }
+
+    .load-more-btn.is-loading .load-more-icon{
+      animation:loadMoreSpin .55s ease;
     }
 
     .load-more-btn.hidden{
       display:none;
+    }
+
+    .soft-reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .65s ease, transform .65s cubic-bezier(.2,.72,.22,1);
+    }
+
+    .soft-reveal.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @keyframes productCardIn{
+      from{
+        opacity:0;
+        transform:translateY(26px) scale(.975) rotateX(4deg);
+        filter:blur(8px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+      }
+    }
+
+    @keyframes imageGlow{
+      from{
+        background-position:115% 0, 0 0;
+      }
+      to{
+        background-position:-115% 0, 0 0;
+      }
+    }
+
+    @keyframes loadMoreSpin{
+      from{
+        transform:rotate(0);
+      }
+      to{
+        transform:rotate(180deg);
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .product-card,
+      .product-card.product-card-enter,
+      .image-area img,
+      .image-area,
+      .load-more-btn.is-loading .load-more-icon,
+      .soft-reveal{
+        animation:none !important;
+        transition:none !important;
+      }
+
+      .soft-reveal,
+      .image-area img{
+        opacity:1;
+        transform:none;
+      }
     }
 
     footer{
@@ -1501,7 +1733,19 @@
       <section class="products-grid" id="productGrid"></section>
 
       <div class="load-more-wrap">
-        <button id="loadMoreBtn" class="load-more-btn">Ver más pines</button>
+        <button id="loadMoreBtn" class="load-more-btn" type="button">
+          <span class="load-more-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 5v14"></path>
+              <path d="m18 13-6 6-6-6"></path>
+            </svg>
+          </span>
+          <span class="load-more-text">
+            <span class="load-more-label">Ver más pines</span>
+            <span class="load-more-count" id="loadMoreCount" aria-live="polite"></span>
+          </span>
+          <span class="load-more-progress" id="loadMoreProgress" aria-hidden="true"></span>
+        </button>
       </div>
     </section>
 
@@ -1530,6 +1774,8 @@
     const productGrid = document.getElementById('productGrid');
     const productCount = document.getElementById('productCount');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadMoreCount = document.getElementById('loadMoreCount');
+    const loadMoreProgress = document.getElementById('loadMoreProgress');
     const filterTrigger = document.getElementById('filterTrigger');
     const filterPanelWrap = document.getElementById('filterPanelWrap');
     const activeFilterRow = document.getElementById('activeFilterRow');
@@ -1658,14 +1904,16 @@
       `;
     }
 
-    function crearTarjeta(producto) {
+    function crearTarjeta(producto, index, animateFrom = 0) {
       const disponible = producto.estado === 'disponible';
       const mensaje = encodeURIComponent(
         `Hola, quiero información sobre ${producto.nombre} Ref ${producto.referencia}`
       );
+      const shouldAnimate = index >= animateFrom;
+      const delay = shouldAnimate ? Math.min((index - animateFrom) * 45, 270) : 0;
 
       return `
-        <article class="product-card">
+        <article class="product-card ${shouldAnimate ? 'product-card-enter' : ''}" style="animation-delay:${delay}ms">
           <div class="image-area">
             <span class="tag ${disponible ? 'disponible' : 'agotado'}">
               ${disponible ? 'Disponible' : 'Agotado'}
@@ -1693,6 +1941,29 @@
     }
 
     function actualizarBotonVerMas() {
+      const remainingProducts = Math.max(filteredProducts.length - visibleCount, 0);
+      const loadedProducts = Math.min(visibleCount, filteredProducts.length);
+      const progress = filteredProducts.length ? Math.round((loadedProducts / filteredProducts.length) * 100) : 0;
+
+      loadMoreBtn.style.setProperty('--load-progress', `${progress}%`);
+
+      if (loadMoreCount) {
+        loadMoreCount.textContent = remainingProducts
+          ? `${remainingProducts} pines más por descubrir`
+          : 'Colección visible completa';
+      }
+
+      loadMoreBtn.setAttribute(
+        'aria-label',
+        remainingProducts
+          ? `Ver más pines. Quedan ${remainingProducts} por descubrir.`
+          : 'Todos los pines visibles.'
+      );
+
+      if (loadMoreProgress) {
+        loadMoreProgress.style.width = `${progress}%`;
+      }
+
       if (visibleCount >= filteredProducts.length) {
         loadMoreBtn.classList.add('hidden');
       } else {
@@ -1700,10 +1971,47 @@
       }
     }
 
-    function renderProductos(lista) {
+    function activarImagenesSuaves(scope = document) {
+      const images = scope.querySelectorAll('.image-area img');
+      images.forEach(img => {
+        const showImage = () => {
+          img.classList.add('is-loaded');
+          img.closest('.image-area')?.classList.add('is-loaded');
+        };
+        if (img.complete) {
+          requestAnimationFrame(showImage);
+        } else {
+          img.addEventListener('load', showImage, { once: true });
+        }
+      });
+    }
+
+    function activarRevealSuave() {
+      const revealItems = document.querySelectorAll('.catalog-hero, .filters-shell, .active-filter-row, .load-more-wrap');
+
+      if (!('IntersectionObserver' in window)) {
+        revealItems.forEach(item => item.classList.add('is-visible'));
+        return;
+      }
+
+      revealItems.forEach(item => item.classList.add('soft-reveal'));
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .16, rootMargin: '0px 0px -40px 0px' });
+
+      revealItems.forEach(item => observer.observe(item));
+    }
+
+    function renderProductos(lista, animateFrom = 0) {
       filteredProducts = lista;
       const visibles = filteredProducts.slice(0, visibleCount);
-      productGrid.innerHTML = visibles.length ? visibles.map(crearTarjeta).join('') : `
+      productGrid.innerHTML = visibles.length ? visibles.map((producto, index) => crearTarjeta(producto, index, animateFrom)).join('') : `
         <div class="empty-state">
           <div class="empty-state-inner">
             <h3>No encontramos pines con ese filtro</h3>
@@ -1715,6 +2023,7 @@
       productCount.textContent = filteredProducts.length;
       actualizarBotonVerMas();
       actualizarFiltroActivo();
+      activarImagenesSuaves(productGrid);
 
       const clearEmptyStateBtn = document.getElementById('clearEmptyStateBtn');
       if (clearEmptyStateBtn) {
@@ -1722,7 +2031,7 @@
       }
     }
 
-    function aplicarFiltros(resetVisible = true) {
+    function aplicarFiltros(resetVisible = true, animate = true) {
       const termino = searchInputPanel.value.toLowerCase().trim();
       const categoriaActiva = categorySelectPanel.value;
       const orden = sortSelectPanel.value;
@@ -1749,7 +2058,7 @@
         visibleCount = INITIAL_VISIBLE;
       }
 
-      renderProductos(filtrados);
+      renderProductos(filtrados, animate ? 0 : Number.POSITIVE_INFINITY);
     }
 
     function setFilterPanelState(show) {
@@ -1785,8 +2094,11 @@
     }
 
     loadMoreBtn.addEventListener('click', () => {
+      const previousVisible = visibleCount;
+      loadMoreBtn.classList.add('is-loading');
       visibleCount += LOAD_MORE_STEP;
-      renderProductos(filteredProducts);
+      renderProductos(filteredProducts, previousVisible);
+      window.setTimeout(() => loadMoreBtn.classList.remove('is-loading'), 420);
     });
 
     searchInputPanel.addEventListener('input', () => {
@@ -1818,7 +2130,7 @@
     }
 
     window.addEventListener('resize', () => {
-      aplicarFiltros(false);
+      aplicarFiltros(false, false);
     });
 
     const categoriaInicial = new URLSearchParams(window.location.search).get('categoria');
@@ -1830,6 +2142,7 @@
       setFilterPanelState(false);
     }
 
+    activarRevealSuave();
     aplicarFiltros(true);
 
     const mobileLinks = document.querySelectorAll('.mobile-drawer-nav a');
