@@ -1232,7 +1232,7 @@
     }
 
     .cart-body{
-      padding:16px 16px 10px;
+      padding:12px 14px 8px;
       overflow:auto;
       scrollbar-width:thin;
       scrollbar-color:rgba(47,120,189,.24) transparent;
@@ -1281,69 +1281,69 @@
 
     .cart-list{
       display:grid;
-      gap:10px;
+      gap:7px;
     }
 
     .cart-item{
       display:grid;
-      grid-template-columns:68px 1fr auto;
-      gap:12px;
+      grid-template-columns:48px 1fr auto;
+      gap:9px;
       align-items:center;
       background:rgba(255,255,255,.92);
       border:1px solid rgba(36,79,130,.08);
-      border-radius:18px;
-      padding:10px;
-      box-shadow:0 8px 18px rgba(36,79,130,.06);
+      border-radius:14px;
+      padding:7px 8px;
+      box-shadow:0 5px 12px rgba(36,79,130,.045);
       transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
 
     .cart-item:hover{
       transform:translateY(-1px);
       border-color:rgba(47,120,189,.16);
-      box-shadow:0 12px 24px rgba(36,79,130,.09);
+      box-shadow:0 8px 16px rgba(36,79,130,.07);
     }
 
     .cart-item img{
-      width:68px;
-      height:68px;
-      border-radius:14px;
+      width:48px;
+      height:48px;
+      border-radius:11px;
       object-fit:cover;
       background:#eee;
-      box-shadow:0 6px 14px rgba(36,79,130,.08);
+      box-shadow:0 4px 10px rgba(36,79,130,.06);
     }
 
     .cart-item-info{
       min-width:0;
       display:grid;
-      gap:4px;
+      gap:2px;
     }
 
     .cart-item-name{
       color:#1d2d40;
-      font-size:14px;
+      font-size:13px;
       font-weight:900;
-      line-height:1.18;
+      line-height:1.15;
       display:-webkit-box;
-      -webkit-line-clamp:2;
+      -webkit-line-clamp:1;
       -webkit-box-orient:vertical;
       overflow:hidden;
     }
 
     .cart-item-ref{
       color:#60758d;
-      font-size:12px;
+      font-size:11px;
       font-weight:800;
     }
 
     .cart-remove{
-      width:32px;
-      height:32px;
+      width:28px;
+      height:28px;
       border:none;
       border-radius:50%;
       background:rgba(255,241,240,.92);
       color:#c0392b;
       cursor:pointer;
-      font-size:19px;
+      font-size:17px;
       line-height:1;
       display:grid;
       place-items:center;
@@ -1357,9 +1357,9 @@
 
     .cart-foot{
       border-top:1px solid rgba(36,79,130,.08);
-      padding:15px 16px 16px;
+      padding:11px 14px 12px;
       display:grid;
-      gap:12px;
+      gap:8px;
       background:
         linear-gradient(180deg, rgba(255,255,255,.94), rgba(246,250,252,.99));
       box-shadow:0 -10px 22px rgba(36,79,130,.05);
@@ -1375,18 +1375,18 @@
       font-size:14px;
       background:#fff;
       border:1px solid rgba(36,79,130,.08);
-      border-radius:16px;
-      padding:10px 12px;
+      border-radius:14px;
+      padding:8px 10px;
       box-shadow:0 6px 14px rgba(36,79,130,.05);
     }
 
     .cart-pricing{
       display:grid;
-      gap:10px;
+      gap:7px;
       background:#fff;
       border:1px solid rgba(36,79,130,.08);
-      border-radius:18px;
-      padding:12px;
+      border-radius:15px;
+      padding:9px 10px;
       box-shadow:0 8px 18px rgba(36,79,130,.06);
     }
 
@@ -1396,13 +1396,13 @@
       justify-content:space-between;
       gap:12px;
       color:#60758d;
-      font-size:13px;
+      font-size:12px;
       font-weight:800;
     }
 
     .cart-price-row strong{
       color:#1d2d40;
-      font-size:15px;
+      font-size:13px;
     }
 
     .cart-price-row.discount strong{
@@ -1415,7 +1415,7 @@
       justify-content:space-between;
       gap:12px;
       border-top:1px solid rgba(36,79,130,.08);
-      padding-top:10px;
+      padding-top:7px;
     }
 
     .cart-price-total span{
@@ -1426,17 +1426,17 @@
 
     .cart-price-total strong{
       color:#1d2d40;
-      font-size:24px;
+      font-size:21px;
       line-height:1;
     }
 
     .cart-promo-box{
       display:grid;
-      gap:8px;
+      gap:6px;
       background:linear-gradient(135deg, rgba(31,122,90,.10), rgba(47,120,189,.10));
       border:1px solid rgba(31,122,90,.16);
-      border-radius:16px;
-      padding:11px 12px;
+      border-radius:13px;
+      padding:8px 10px;
       color:#244259;
     }
 
@@ -1445,7 +1445,7 @@
       align-items:center;
       justify-content:space-between;
       gap:10px;
-      font-size:13px;
+      font-size:12px;
       font-weight:900;
     }
 
@@ -1455,13 +1455,13 @@
 
     .cart-promo-text{
       color:#587087;
-      font-size:12px;
+      font-size:11px;
       font-weight:800;
       line-height:1.35;
     }
 
     .cart-promo-track{
-      height:7px;
+      height:6px;
       border-radius:999px;
       background:rgba(255,255,255,.74);
       overflow:hidden;
@@ -1484,9 +1484,9 @@
     .cart-clear,
     .cart-whatsapp{
       border:none;
-      border-radius:16px;
-      min-height:48px;
-      padding:12px 14px;
+      border-radius:14px;
+      min-height:43px;
+      padding:10px 12px;
       font-weight:900;
       cursor:pointer;
       transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
@@ -2196,23 +2196,24 @@
       }
 
       .cart-body{
-        padding:10px 10px 8px;
+        padding:8px 9px 7px;
       }
 
       .cart-item{
-        grid-template-columns:58px 1fr auto;
-        border-radius:16px;
-        padding:9px;
-        gap:10px;
+        grid-template-columns:44px 1fr auto;
+        border-radius:13px;
+        padding:6px 7px;
+        gap:8px;
       }
 
       .cart-item img{
-        width:58px;
-        height:58px;
+        width:44px;
+        height:44px;
+        border-radius:10px;
       }
 
       .cart-foot{
-        padding:10px 10px 12px;
+        padding:8px 9px 10px;
       }
 
       .cart-actions{
@@ -2222,20 +2223,20 @@
 
       .cart-clear,
       .cart-whatsapp{
-        min-height:44px;
+        min-height:40px;
       }
 
       .cart-summary{
-        padding:9px 11px;
+        padding:7px 9px;
       }
 
       .cart-pricing{
-        padding:10px;
-        gap:8px;
+        padding:8px 9px;
+        gap:6px;
       }
 
       .cart-price-total strong{
-        font-size:22px;
+        font-size:20px;
       }
 
       .whatsapp-icon svg{
@@ -2788,8 +2789,8 @@
           faltan: 2,
           objetivo: 2,
           progreso: 0,
-          titulo: 'Activa tu primera promo',
-          texto: 'Agrega 2 pines y pagas $14.000 en vez de $16.000.'
+          titulo: 'Promos disponibles',
+          texto: 'Si eliges 2 pines, el total queda en $14.000. Con 3 pines, queda en $20.000.'
         };
       }
 
@@ -2805,8 +2806,8 @@
           faltan,
           objetivo,
           progreso,
-          titulo: 'Te falta 1 pin para promo',
-          texto: `Agrega 1 pin más y esos 2 pines quedan en ${formatoPrecio(TWO_PIN_PROMO)}.`
+          titulo: 'Promo cercana',
+          texto: `Con 1 pin adicional, este grupo de 2 queda en ${formatoPrecio(TWO_PIN_PROMO)}.`
         };
       }
 
@@ -2815,8 +2816,8 @@
           faltan,
           objetivo,
           progreso,
-          titulo: 'Te falta 1 pin para mejorar la promo',
-          texto: `Agrega 1 pin más y llegas a 3 pines por ${formatoPrecio(THREE_PIN_PROMO)}.`
+          titulo: 'Mejor precio disponible',
+          texto: `Si sumas 1 pin adicional, el grupo de 3 queda en ${formatoPrecio(THREE_PIN_PROMO)}.`
         };
       }
 
@@ -2824,8 +2825,8 @@
         faltan,
         objetivo,
         progreso,
-        titulo: 'Sigue ahorrando',
-        texto: `Agrega 2 pines más para llegar a ${objetivo} pines y aplicar otra promo de 2 por ${formatoPrecio(TWO_PIN_PROMO)}.`
+        titulo: 'Promos por grupos',
+        texto: `A partir de 2 pines adicionales se aplica otra promo de 2 por ${formatoPrecio(TWO_PIN_PROMO)}.`
       };
     }
 
