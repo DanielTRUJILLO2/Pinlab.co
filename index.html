@@ -110,6 +110,15 @@
       object-fit:contain;
       display:block;
       filter:drop-shadow(0 6px 10px rgba(0,0,0,.06));
+      transform:scale(1.16);
+      transform-origin:center;
+      transition:transform .2s ease;
+    }
+
+    .logo-box:hover img,
+    .mobile-drawer-logo-link:hover img{
+      transform:scale(1.2);
+      cursor:pointer;
     }
 
     .menu-toggle{
