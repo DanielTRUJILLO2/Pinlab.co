@@ -1194,7 +1194,7 @@
 
     .cart-title{
       display:grid;
-      gap:4px;
+      gap:5px;
     }
 
     .cart-title strong{
@@ -1207,6 +1207,26 @@
       color:#60758d;
       font-size:13px;
       line-height:1.4;
+    }
+
+    .cart-title-line{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      flex-wrap:wrap;
+    }
+
+    .cart-mini-count{
+      min-height:24px;
+      border-radius:999px;
+      padding:5px 9px;
+      display:inline-flex;
+      align-items:center;
+      background:linear-gradient(135deg, rgba(47,120,189,.12), rgba(31,122,90,.12));
+      color:#1f7a5a;
+      font-size:12px;
+      font-weight:900;
+      line-height:1;
     }
 
     .cart-close{
@@ -1366,38 +1386,39 @@
     }
 
     .cart-summary{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      color:#1d2d40;
-      font-weight:900;
-      font-size:14px;
-      background:#fff;
-      border:1px solid rgba(36,79,130,.08);
-      border-radius:14px;
-      padding:8px 10px;
-      box-shadow:0 6px 14px rgba(36,79,130,.05);
+      display:none;
     }
 
     .cart-pricing{
       display:grid;
-      gap:7px;
-      background:#fff;
+      grid-template-columns:1fr auto;
+      grid-template-areas:
+        "label final"
+        "regular discount"
+        "promo promo";
+      align-items:center;
+      gap:12px;
+      background:
+        radial-gradient(circle at 92% 10%, rgba(31,122,90,.10), transparent 30%),
+        #fff;
       border:1px solid rgba(36,79,130,.08);
-      border-radius:15px;
-      padding:9px 10px;
+      border-radius:18px;
+      padding:12px;
       box-shadow:0 8px 18px rgba(36,79,130,.06);
     }
 
     .cart-price-row{
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:12px;
+      justify-content:flex-start;
+      gap:7px;
       color:#60758d;
       font-size:12px;
       font-weight:800;
+    }
+
+    .cart-price-row:first-child{
+      grid-area:regular;
     }
 
     .cart-price-row strong{
@@ -1405,38 +1426,45 @@
       font-size:13px;
     }
 
+    .cart-price-row.discount{
+      grid-area:discount;
+      justify-content:flex-end;
+    }
+
     .cart-price-row.discount strong{
       color:#1f7a5a;
+      background:rgba(31,122,90,.10);
+      border-radius:999px;
+      padding:4px 8px;
     }
 
     .cart-price-total{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-      border-top:1px solid rgba(36,79,130,.08);
-      padding-top:7px;
+      grid-area:final;
+      display:grid;
+      justify-items:end;
+      gap:3px;
     }
 
     .cart-price-total span{
       color:#60758d;
-      font-size:13px;
+      font-size:12px;
       font-weight:900;
     }
 
     .cart-price-total strong{
       color:#1d2d40;
-      font-size:21px;
+      font-size:26px;
       line-height:1;
     }
 
     .cart-promo-box{
+      grid-area:promo;
       display:grid;
       gap:6px;
-      background:linear-gradient(135deg, rgba(31,122,90,.10), rgba(47,120,189,.10));
-      border:1px solid rgba(31,122,90,.16);
-      border-radius:13px;
-      padding:8px 10px;
+      background:linear-gradient(135deg, rgba(31,122,90,.09), rgba(47,120,189,.09));
+      border:1px solid rgba(31,122,90,.14);
+      border-radius:14px;
+      padding:9px 10px;
       color:#244259;
     }
 
@@ -2195,6 +2223,12 @@
         font-size:20px;
       }
 
+      .cart-mini-count{
+        min-height:22px;
+        padding:4px 8px;
+        font-size:11px;
+      }
+
       .cart-title span{
         font-size:12px;
       }
@@ -2237,10 +2271,25 @@
       .cart-pricing{
         padding:8px 9px;
         gap:6px;
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "final"
+          "regular"
+          "discount"
+          "promo";
       }
 
       .cart-price-total strong{
         font-size:20px;
+      }
+
+      .cart-price-total{
+        justify-items:start;
+      }
+
+      .cart-price-row,
+      .cart-price-row.discount{
+        justify-content:space-between;
       }
 
       .whatsapp-icon svg{
@@ -2444,7 +2493,10 @@
   <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de pines" aria-hidden="true">
     <div class="cart-head">
       <div class="cart-title">
-        <strong>Tu carrito</strong>
+        <div class="cart-title-line">
+          <strong>Tu carrito</strong>
+          <span class="cart-mini-count" id="cartMiniCount">0 pines</span>
+        </div>
         <span>Tus favoritos listos para pedir por WhatsApp.</span>
       </div>
       <button class="cart-close" id="cartClose" type="button" aria-label="Cerrar carrito">×</button>
@@ -2517,6 +2569,7 @@
     const activeFilterChip = document.getElementById('activeFilterChip');
     const cartFloat = document.getElementById('cartFloat');
     const cartFloatCount = document.getElementById('cartFloatCount');
+    const cartMiniCount = document.getElementById('cartMiniCount');
     const cartOverlay = document.getElementById('cartOverlay');
     const cartDrawer = document.getElementById('cartDrawer');
     const cartClose = document.getElementById('cartClose');
@@ -2772,12 +2825,15 @@
     }
 
     function calcularPromo(count) {
-      const gruposDeTres = Math.floor(count / 3);
-      const restante = count % 3;
-      let total = gruposDeTres * THREE_PIN_PROMO;
+      let total = count * PIN_PRICE;
 
-      if (restante === 1) total += PIN_PRICE;
-      if (restante === 2) total += TWO_PIN_PROMO;
+      if (count === 2) {
+        total = TWO_PIN_PROMO;
+      }
+
+      if (count === 3) {
+        total = THREE_PIN_PROMO;
+      }
 
       const precioNormal = count * PIN_PRICE;
       return {
@@ -2790,7 +2846,6 @@
     function obtenerSiguientePromo(count) {
       if (count === 0) {
         return {
-          faltan: 2,
           objetivo: 2,
           progreso: 0,
           titulo: 'Oportunidad de ahorro',
@@ -2798,42 +2853,26 @@
         };
       }
 
-      const restante = count % 3;
-      const faltan = restante === 0 ? 2 : 3 - restante;
-      const objetivo = count + faltan;
-      const progresoBase = restante === 0 ? 0 : restante;
-      const progresoTotal = restante === 0 ? 2 : 3;
-      const progreso = Math.round((progresoBase / progresoTotal) * 100);
+      if (count >= 3) {
+        return {
+          objetivo: 3,
+          progreso: 100,
+          titulo: 'Promo aplicada',
+          texto: 'Ya tienes la promo de 3 pines por $20.000.'
+        };
+      }
+
+      const objetivo = count + 1;
+      const progreso = count === 1 ? 0 : 50;
       const ahorroObjetivo = objetivo * PIN_PRICE - calcularPromo(objetivo).total;
       const ahorroActual = count * PIN_PRICE - calcularPromo(count).total;
       const ahorroAdicional = Math.max(ahorroObjetivo - ahorroActual, 0);
 
-      if (restante === 1) {
-        return {
-          faltan,
-          objetivo,
-          progreso,
-          titulo: 'Oportunidad de ahorro',
-          texto: `Agrega 1 más y ahorra ${formatoPrecio(ahorroAdicional)}.`
-        };
-      }
-
-      if (restante === 2) {
-        return {
-          faltan,
-          objetivo,
-          progreso,
-          titulo: 'Oportunidad de ahorro',
-          texto: `Agrega 1 más y ahorra ${formatoPrecio(ahorroAdicional)}.`
-        };
-      }
-
       return {
-        faltan,
         objetivo,
         progreso,
         titulo: 'Oportunidad de ahorro',
-        texto: `Agrega 2 más y ahorra ${formatoPrecio(ahorroAdicional)}.`
+        texto: `Agrega 1 más y ahorra ${formatoPrecio(ahorroAdicional)}.`
       };
     }
 
@@ -2867,6 +2906,7 @@
 
       cartFloatCount.textContent = total;
       cartSummary.textContent = pluralPines(total);
+      cartMiniCount.textContent = pluralPines(total);
       cartClear.disabled = total === 0;
       cartWhatsapp.disabled = total === 0;
       actualizarPreciosCarrito(total);
