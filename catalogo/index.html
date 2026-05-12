@@ -1443,7 +1443,7 @@
     .cart-promo-title{
       display:flex;
       align-items:center;
-      justify-content:space-between;
+      justify-content:flex-start;
       gap:10px;
       font-size:12px;
       font-weight:900;
@@ -1451,6 +1451,10 @@
 
     .cart-promo-title strong{
       color:#1f7a5a;
+    }
+
+    .cart-promo-title strong:empty{
+      display:none;
     }
 
     .cart-promo-text{
@@ -2483,7 +2487,7 @@
         <div class="cart-promo-box" id="cartPromoBox">
           <div class="cart-promo-title">
             <span id="cartPromoTitle">Agrega pines para activar promociones</span>
-            <strong id="cartPromoTarget">0/2</strong>
+            <strong id="cartPromoTarget"></strong>
           </div>
           <div class="cart-promo-track" aria-hidden="true">
             <div class="cart-promo-fill" id="cartPromoFill"></div>
@@ -2789,8 +2793,8 @@
           faltan: 2,
           objetivo: 2,
           progreso: 0,
-          titulo: 'Promos disponibles',
-          texto: 'Si eliges 2 pines, el total queda en $14.000. Con 3 pines, queda en $20.000.'
+          titulo: 'Oportunidad de ahorro',
+          texto: 'Agrega 2 pines y ahorra $2.000.'
         };
       }
 
@@ -2800,14 +2804,17 @@
       const progresoBase = restante === 0 ? 0 : restante;
       const progresoTotal = restante === 0 ? 2 : 3;
       const progreso = Math.round((progresoBase / progresoTotal) * 100);
+      const ahorroObjetivo = objetivo * PIN_PRICE - calcularPromo(objetivo).total;
+      const ahorroActual = count * PIN_PRICE - calcularPromo(count).total;
+      const ahorroAdicional = Math.max(ahorroObjetivo - ahorroActual, 0);
 
       if (restante === 1) {
         return {
           faltan,
           objetivo,
           progreso,
-          titulo: 'Promo cercana',
-          texto: `Con 1 pin adicional, este grupo de 2 queda en ${formatoPrecio(TWO_PIN_PROMO)}.`
+          titulo: 'Oportunidad de ahorro',
+          texto: `Agrega 1 más y ahorra ${formatoPrecio(ahorroAdicional)}.`
         };
       }
 
@@ -2816,8 +2823,8 @@
           faltan,
           objetivo,
           progreso,
-          titulo: 'Mejor precio disponible',
-          texto: `Si sumas 1 pin adicional, el grupo de 3 queda en ${formatoPrecio(THREE_PIN_PROMO)}.`
+          titulo: 'Oportunidad de ahorro',
+          texto: `Agrega 1 más y ahorra ${formatoPrecio(ahorroAdicional)}.`
         };
       }
 
@@ -2825,8 +2832,8 @@
         faltan,
         objetivo,
         progreso,
-        titulo: 'Promos por grupos',
-        texto: `A partir de 2 pines adicionales se aplica otra promo de 2 por ${formatoPrecio(TWO_PIN_PROMO)}.`
+        titulo: 'Oportunidad de ahorro',
+        texto: `Agrega 2 más y ahorra ${formatoPrecio(ahorroAdicional)}.`
       };
     }
 
@@ -2838,7 +2845,7 @@
       cartDiscount.textContent = promo.descuento ? `-${formatoPrecio(promo.descuento)}` : '$0';
       cartFinalPrice.textContent = formatoPrecio(promo.total);
       cartPromoTitle.textContent = siguientePromo.titulo;
-      cartPromoTarget.textContent = `${totalItems}/${siguientePromo.objetivo}`;
+      cartPromoTarget.textContent = '';
       cartPromoText.textContent = siguientePromo.texto;
       cartPromoFill.style.width = `${siguientePromo.progreso}%`;
     }
