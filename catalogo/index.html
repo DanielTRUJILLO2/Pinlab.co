@@ -2881,7 +2881,7 @@
         .map((producto, index) => `${index + 1}. ${producto.nombre}\n   Ref: ${producto.referencia}`)
         .join('\n\n');
       const message = encodeURIComponent(
-        `Hola, quiero hacer un pedido en Pin Lab Co.\n\nPines seleccionados:\n\n${productLines}\n\nTotal seleccionado: ${pluralPines(cartProducts.length)}\nPromos aplicadas: ${resumenPromo(promo)}\nTotal estimado: ${formatoPrecio(promo.total)}\nAhorro aplicado: ${formatoPrecio(promo.descuento)}\n\nQuedo pendiente para confirmar disponibilidad y proceso de compra.`
+        `Hola, quiero hacer un pedido en *Pin Lab Co*.\n\n*Pines seleccionados:*\n\n${productLines}\n\n*Total seleccionado:* ${pluralPines(cartProducts.length)}\n*Promos aplicadas:* ${resumenPromo(promo)}\n*Total estimado:* ${formatoPrecio(promo.total)}\n*Ahorro aplicado:* ${formatoPrecio(promo.descuento)}\n\nQuedo pendiente para confirmar disponibilidad y proceso de compra.`
       );
 
       window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank', 'noopener,noreferrer');
